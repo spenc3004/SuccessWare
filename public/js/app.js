@@ -107,7 +107,7 @@ document.getElementById("query").addEventListener("click", function () {
     // Show loading spinner
     document.getElementById('loading-spinner').style.display = 'flex';
 
-    fetch('/query', {
+    fetch('/jobs', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -118,11 +118,80 @@ document.getElementById("query").addEventListener("click", function () {
         })
     })
         .then(response => response.json())
-        .then(jobData => {
-            console.log(jobData);
+        .then(async jobData => {
+            //console.log(jobData);
             const jobsArray = jobData.data
 
-            table.setData(jobsArray);
+            const jobsWithCost = jobsArray.map(job => {
+                job.invoiceId = [];
+                job.invoices.forEach(invoice => {
+                    job.invoiceId.push(invoice.id);
+                    if (invoice.totalAmount !== null) {
+                        job.cost = invoice.totalAmount;
+                    }
+                    else {
+                        job.cost = 'N/A';
+                    }
+                })
+                return job;
+            });
+
+            const invoicePromises = jobsWithCost.map(async (job) => {
+                try {
+                    for (const id of job.invoiceId) {
+                        const res = await fetch('/invoices', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ invoiceId: id })
+                        });
+
+                        const invoiceData = await res.json();
+                        job.invoiceData = invoiceData;
+                        job.billingCustomerId = invoiceData.data.arBillingCustomerId;
+                    }
+                    return job;
+                } catch (error) {
+                    console.error('Error fetching invoice data for job:', job, error);
+                    return job;
+                }
+            }
+            );
+            const jobsWithInvoiceData = await Promise.all(invoicePromises)
+
+
+
+            const customerPromises = jobsWithInvoiceData.map(async (job) => {
+                try {
+                    const res = await fetch('/customers', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ billingCustomerId: job.billingCustomerId })
+                    });
+
+                    const customerData = await res.json();
+                    //console.log('Customer Data:', customerData);
+
+
+                    job.customer = customerData.data;
+                    job.name = `${job.customer.firstName} ${job.customer.lastName}`;
+                    job.customerCity = job.customer.city;
+                    job.customerState = job.customer.state;
+                    job.customerStreet = `${job.customer.address1 ?? ''} ${job.customer.address2 ?? ''}`.trim();
+                    job.customerZip = job.customer.zipCode;
+                    job.doNotMail = job.customer.doNotSolicit;
+
+                    return job;
+                } catch (error) {
+                    console.error('Error fetching customer data for job:', job, error);
+                    return job;
+                }
+            });
+
+            const jobsWithCustomerData = await Promise.all(customerPromises)
+
+            console.log(jobsWithCustomerData);
+
+            table.setData(jobsWithCustomerData);
 
             // Hide loading spinner
             document.getElementById('loading-spinner').style.display = 'none';
