@@ -173,6 +173,7 @@ document.getElementById("query").addEventListener("click", function () {
 
 
                     job.customer = customerData.data;
+                    job.customerId = job.customer.id;
                     job.name = `${job.customer.firstName} ${job.customer.lastName}`;
                     job.customerCity = job.customer.city;
                     job.customerState = job.customer.state;
@@ -186,12 +187,38 @@ document.getElementById("query").addEventListener("click", function () {
                     return job;
                 }
             });
-
             const jobsWithCustomerData = await Promise.all(customerPromises)
 
-            console.log(jobsWithCustomerData);
 
-            table.setData(jobsWithCustomerData);
+            const locationPromises = jobsWithCustomerData.map(async (job) => {
+                try {
+                    const res = await fetch('/locations', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ locationId: job.locationId })
+                    });
+
+                    const locationData = await res.json();
+                    job.locationData = locationData.data;
+                    job.customerType = locationData.data.type;
+                    job.locationStreet = `${locationData.data.address1 ?? ''} ${locationData.data.address2 ?? ''}`.trim();
+                    job.locationCity = locationData.data.city;
+                    job.locationState = locationData.data.state;
+                    job.locationZip = locationData.data.zipCode;
+
+                    return job;
+                } catch (error) {
+                    console.error('Error fetching location data for job:', job, error);
+                    return job;
+                }
+            });
+            const jobsWithLocationData = await Promise.all(locationPromises)
+            console.log(jobsWithLocationData);
+
+
+            //console.log(jobsWithCustomerData);
+
+            table.setData(jobsWithLocationData);
 
             // Hide loading spinner
             document.getElementById('loading-spinner').style.display = 'none';

@@ -399,6 +399,51 @@ app.post('/customers', async (req, res) => {
     // #endregion
 });
 
+app.post('/locations', async (req, res) => {
+    // #region GET /locations
+    const token = req.cookies.access_token; // Get the token from the request headers
+    const locationId = req.body.locationId
+
+    if (!token) {
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
+    }
+    const endpoint = "https://publicapi-rc.successwareg2.com/api/graphql";
+    const client = new GraphQLClient(endpoint, {
+        headers: {
+            Authorization: `Bearer ${token} `,
+        },
+    });
+    const query = gql`
+    query GetLocationById ($locationId: Long!) {
+    getLocationById(id: $locationId) {
+        id
+        address1
+        address2
+        city
+        state
+        zipCode
+        type
+        companyName
+        lotId
+        subdivision
+        directionNote
+        ownerOccupied
+    }
+}`;
+    const variables = {
+        locationId: String(locationId)
+    };
+    try {
+        const response = await client.request(query, variables);
+        res.json({ data: response.getLocationById });
+    } catch (error) {
+        console.error("GraphQL query failed:", error);
+        res.status(500).json({ error: 'Failed to fetch location data' });
+    }
+    // #endregion
+});
+
 
 app.listen(3000, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
