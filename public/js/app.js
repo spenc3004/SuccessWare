@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { title: 'Customer City', field: 'customerCity' },
                 { title: 'Customer State', field: 'customerState' },
                 { title: 'Customer Zip', field: 'customerZip' },
-                { title: 'Do Not Mail', field: 'doNotMail' }
+                { title: 'Do Not Mail (Do Not Solicit)', field: 'doNotMail' }
 
 
             ] //create columns from data field names
