@@ -47,7 +47,7 @@ app.post('/login', async (req, res) => {
 
 app.get('/authenticate', (req, res) => {
     // #region GET /authenticate
-    const accessToken = req.headers.cookie;
+    const accessToken = req.cookies.access_token;
     if (!accessToken) {
         res.status(401).json({ message: 'Unauthorized' });
         return;
@@ -241,164 +241,6 @@ app.post('/jobs', async (req, res) => {
     // #endregion
 });
 
-app.post('/invoices', async (req, res) => {
-    // #region GET /invoices
-    const token = req.cookies.access_token; // Get the token from the request headers
-    const invoiceId = req.body.invoiceId
-
-    if (!token) {
-        res.status(401).json({ error: 'Unauthorized' });
-        return;
-    }
-
-
-    const endpoint = "https://publicapi-rc.successwareg2.com/api/graphql";
-    const client = new GraphQLClient(endpoint, {
-        headers: {
-            Authorization: `Bearer ${token} `,
-        },
-    });
-    const query = gql`
-        query GetCustomInvoiceById {
-            getCustomInvoiceById(id: ${invoiceId}) {
-                id
-                invoiceNumber
-                jobId
-                locationId
-                arBillingCustomerId
-                updatedAtLocal
-            }
-        }
-
-`;
-    try {
-        const response = await client.request(query);
-        res.json({ data: response.getCustomInvoiceById });
-    } catch (error) {
-        console.error("GraphQL query failed:", error);
-        res.status(500).json({ error: 'Failed to fetch invoice data' });
-    }
-    // #endregion
-});
-
-
-app.post('/customers', async (req, res) => {
-    // #region GET /customers
-    const token = req.cookies.access_token; // Get the token from the request headers
-    const billingCustomerId = req.body.billingCustomerId
-
-    if (!token) {
-        res.status(401).json({ error: 'Unauthorized' });
-        return;
-    }
-
-
-    const endpoint = "https://publicapi-rc.successwareg2.com/api/graphql";
-    const client = new GraphQLClient(endpoint, {
-        headers: {
-            Authorization: `Bearer ${token} `,
-        },
-    });
-    const query = gql`
-    query GetBillingCustomerById ($billingCustomerID: Long!) {
-    getBillingCustomerById(billingCustomerID: $billingCustomerID) {
-        successful
-        message
-        billingCustomer {
-            id
-            billingCustomerId
-            apContact
-            serviceContact
-            creditLimit
-            balanceDue
-            badRiskCustomer
-            doNotSolicit
-            happyChecks
-            creditCardNumber
-            creditCardName
-            creditCardExpireMonth
-            creditCardExpireYear
-            financeCharge
-            active
-            general
-            taxExemptNumber
-            counterSale
-            xchargeAlias
-            xchargeClean
-            checkBankAccountNumber
-            salesPersonId
-            serviceAccountId
-            statement
-            currentBalance
-            over30Balance
-            over60Balance
-            over90Balance
-            openCount
-            retainedBalance
-            noStatement
-            lastAgeDate
-            createdBy
-            createdAt
-            financeChargeAmount
-            noFinanceCharge
-            lastFinanceDate
-            arBillingLocationId
-            arAlternateLocationId
-            totalInvoiceAmount
-            totalAdjustAmount
-            totalRefundAmount
-            totalPaidAmount
-            title
-            firstName
-            lastName
-            alternateFirstName
-            alternateLastName
-            comments
-            companyName
-            cellPhone
-            customerChangeUtcdt
-            customerTitle2
-            faxPhone
-            noEmail
-            primaryAddress
-            phoneNumber
-            phoneNumber2
-            phoneNumber3
-            phoneNumber4
-            email
-            name2InAddress
-            alternateTitle
-            phoneExtension
-            phone2Extension
-            phone3Extension
-            phone4Extension
-            address1
-            address2
-            city
-            state
-            zipCode
-            depositOnAccount
-            lastAgeDateLocal
-            createdAtLocal
-            lastFinanceDateLocal
-            customerChangeLocal
-        }
-    }
-}
- `;
-    const variables = {
-        billingCustomerID: String(billingCustomerId)
-    };
-    try {
-        const response = await client.request(query, variables);
-        res.json({ data: response.getBillingCustomerById.billingCustomer });
-    } catch (error) {
-        console.error("GraphQL query failed:", error);
-        res.status(500).json({ error: 'Failed to fetch customer data' });
-    }
-    // #endregion
-});
-
 app.post('/locations', async (req, res) => {
     // #region GET /locations
     const token = req.cookies.access_token; // Get the token from the request headers
@@ -415,34 +257,143 @@ app.post('/locations', async (req, res) => {
         },
     });
     const query = gql`
-    query GetLocationById ($locationId: Long!) {
-    getLocationById(id: $locationId) {
-        id
-        address1
-        address2
-        city
-        state
-        zipCode
-        type
-        companyName
-        lotId
-        subdivision
-        directionNote
-        ownerOccupied
+    query GetLocationInfoByLocationId ($locationId: Long!) {
+    getLocationInfoByLocationId(locationId: $locationId) {
+        successful
+        message
+        locationInfo {
+            id
+            address1
+            address2
+            city
+            state
+            zipCode
+            type
+            contact
+            contractArBillingCustomerId
+            contractComment
+            contractNo
+            serviceType
+            sizeOfService
+            openMarketingCount
+            customerAccounts {
+                serviceAccountId
+                primaryBillingCustomerId
+                customer {
+                    id
+                    firstName
+                    lastName
+                    phoneNumber
+                    extension
+                    email
+                    title
+                    leadSource
+                    sourceType
+                    leadSourceTypeId
+                    leadSourceId
+                    altFirstName
+                    altLastName
+                    referral
+                    noEmail
+                    alternameNameInAddress
+                    alternateTitle
+                    phone1Ext
+                    phone2
+                    phone2Ext
+                    phone3
+                    phone3Ext
+                    phone4
+                    phone4Ext
+                    legacyLocationId
+                    leadSourceDescription
+                    commercial
+                    companyName
+                    dnis
+                }
+                primaryBillingAddress {
+                    address1
+                    address2
+                    city
+                    state
+                    zipCode
+                }
+            }
+            communicationPreference {
+                locationId
+                id
+                optOut
+                optIn
+                serviceAccountId
+                communicationClass {
+                    id
+                    className
+                    optInRequired
+                }
+            }
+            priority
+        }
     }
-}`;
+}
+`;
     const variables = {
         locationId: String(locationId)
     };
     try {
         const response = await client.request(query, variables);
-        res.json({ data: response.getLocationById });
+        res.json({ data: response.getLocationInfoByLocationId });
     } catch (error) {
         console.error("GraphQL query failed:", error);
         res.status(500).json({ error: 'Failed to fetch location data' });
     }
     // #endregion
 });
+
+app.post('/communications', async (req, res) => {
+    // #region GET /communications
+    const token = req.cookies.access_token; // Get the token from the request headers
+    const locationId = req.body.locationId
+
+    if (!token) {
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
+    }
+    const endpoint = "https://publicapi-rc.successwareg2.com/api/graphql";
+    const client = new GraphQLClient(endpoint, {
+        headers: {
+            Authorization: `Bearer ${token} `,
+        },
+    });
+    const query = gql`
+    query GetCommunicationPreferenceByLocationId ($locationId: Long!) {
+    getCommunicationPreferenceByLocationId(locationId: $locationId) {
+        locationId
+        id
+        optOut
+        optIn
+        serviceAccountId
+        communicationClass {
+            id
+            className
+            optInRequired
+        }
+    }
+}
+`;
+    const variables = {
+        locationId: String(locationId)
+    };
+    try {
+        const response = await client.request(query, variables);
+        res.json({ data: response.getCommunicationPreferenceByLocationId });
+    } catch (error) {
+        console.error("GraphQL query failed:", error);
+        res.status(500).json({ error: 'Failed to fetch location data' });
+    }
+    // #endregion
+}
+);
+
+
 
 
 app.listen(3000, () => {

@@ -59,10 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 { title: 'Customer State', field: 'customerState' },
                 { title: 'Customer Zip', field: 'customerZip' },
                 { title: 'Do Not Mail (Do Not Solicit)', field: 'doNotMail' }
+            ],
 
-
-            ] //create columns from data field names
         });
+
+    // Trigger download
+    document.getElementById('download-csv').addEventListener('click', function () {
+        table.download('csv', 'data.csv');
+    });
+    document.getElementById('download-csv').disabled = true
+
+
     // #endregion
 });
 
@@ -136,61 +143,7 @@ document.getElementById("query").addEventListener("click", function () {
                 return job;
             });
 
-            const invoicePromises = jobsWithCost.map(async (job) => {
-                try {
-                    for (const id of job.invoiceId) {
-                        const res = await fetch('/invoices', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ invoiceId: id })
-                        });
-
-                        const invoiceData = await res.json();
-                        job.invoiceData = invoiceData;
-                        job.billingCustomerId = invoiceData.data.arBillingCustomerId;
-                    }
-                    return job;
-                } catch (error) {
-                    console.error('Error fetching invoice data for job:', job, error);
-                    return job;
-                }
-            }
-            );
-            const jobsWithInvoiceData = await Promise.all(invoicePromises)
-
-
-
-            const customerPromises = jobsWithInvoiceData.map(async (job) => {
-                try {
-                    const res = await fetch('/customers', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ billingCustomerId: job.billingCustomerId })
-                    });
-
-                    const customerData = await res.json();
-                    //console.log('Customer Data:', customerData);
-
-
-                    job.customer = customerData.data;
-                    job.customerId = job.customer.id;
-                    job.name = `${job.customer.firstName} ${job.customer.lastName}`;
-                    job.customerCity = job.customer.city;
-                    job.customerState = job.customer.state;
-                    job.customerStreet = `${job.customer.address1 ?? ''} ${job.customer.address2 ?? ''}`.trim();
-                    job.customerZip = job.customer.zipCode;
-                    job.doNotMail = job.customer.doNotSolicit;
-
-                    return job;
-                } catch (error) {
-                    console.error('Error fetching customer data for job:', job, error);
-                    return job;
-                }
-            });
-            const jobsWithCustomerData = await Promise.all(customerPromises)
-
-
-            const locationPromises = jobsWithCustomerData.map(async (job) => {
+            const locationPromises = jobsWithCost.map(async (job) => {
                 try {
                     const res = await fetch('/locations', {
                         method: 'POST',
@@ -199,29 +152,58 @@ document.getElementById("query").addEventListener("click", function () {
                     });
 
                     const locationData = await res.json();
-                    job.locationData = locationData.data;
-                    job.customerType = locationData.data.type;
-                    job.locationStreet = `${locationData.data.address1 ?? ''} ${locationData.data.address2 ?? ''}`.trim();
-                    job.locationCity = locationData.data.city;
-                    job.locationState = locationData.data.state;
-                    job.locationZip = locationData.data.zipCode;
+                    job.locationData = locationData.data.locationInfo
+                    job.customerType = job.locationData.type;
+                    job.locationStreet = `${job.locationData.address1 ?? ''} ${job.locationData.address2 ?? ''}`.trim();
+                    job.locationCity = job.locationData.city;
+                    job.locationState = job.locationData.state;
+                    job.locationZip = job.locationData.zipCode;
+
+                    job.locationData.customerAccounts.forEach(account => {
+                        job.customerId = account.customer.id;
+                        job.name = `${account.customer.firstName} ${account.customer.lastName}`;
+                        job.customerStreet = `${account.primaryBillingAddress.address1 ?? ''} ${account.primaryBillingAddress.address2 ?? ''}`.trim();
+                        job.customerCity = account.primaryBillingAddress.city;
+                        job.customerState = account.primaryBillingAddress.state;
+                        job.customerZip = account.primaryBillingAddress.zipCode;
+
+                    })
 
                     return job;
                 } catch (error) {
-                    console.error('Error fetching location data for job:', job, error);
+                    console.error('Error fetching invoice data for job:', job, error);
                     return job;
                 }
-            });
+            }
+            );
             const jobsWithLocationData = await Promise.all(locationPromises)
             console.log(jobsWithLocationData);
 
+            const communicationPromises = jobsWithLocationData.map(async (job) => {
+                try {
+                    const res = await fetch('/communications', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ locationId: job.locationId })
+                    });
 
-            //console.log(jobsWithCustomerData);
+                    const communicationData = await res.json();
+                    job.communicationData = communicationData.data;
+                    return job;
+                } catch (error) {
+                    console.error('Error fetching invoice data for job:', job, error);
+                    return job;
+                }
+            }
+            );
+            const jobsWithCommunicationData = await Promise.all(communicationPromises)
+            console.log(jobsWithCommunicationData);
 
             table.setData(jobsWithLocationData);
 
             // Hide loading spinner
             document.getElementById('loading-spinner').style.display = 'none';
+            document.getElementById('download-csv').disabled = false
         })
         .catch(error => {
             console.error('Error fetching query:', error);
