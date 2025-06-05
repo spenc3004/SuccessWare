@@ -177,7 +177,7 @@ document.getElementById("query").addEventListener("click", function () {
             }
             );
             const jobsWithLocationData = await Promise.all(locationPromises)
-            console.log(jobsWithLocationData);
+            //console.log(jobsWithLocationData);
 
             const communicationPromises = jobsWithLocationData.map(async (job) => {
                 try {
@@ -197,7 +197,7 @@ document.getElementById("query").addEventListener("click", function () {
             }
             );
             const jobsWithCommunicationData = await Promise.all(communicationPromises)
-            console.log(jobsWithCommunicationData);
+            //console.log(jobsWithCommunicationData);
 
             table.setData(jobsWithLocationData);
 

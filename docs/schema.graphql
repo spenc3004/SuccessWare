@@ -1,0 +1,5893 @@
+# Indicates an Input Object is a OneOf Input Object.
+directive @oneOf on INPUT_OBJECT
+
+type AccountDetail {
+  id: Long
+  companyName: String
+  customerTitle2: String
+  firstName: String
+  lastName: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  phoneNumber: String
+  phone1Ext: String
+  customerRating: String
+  subTotal: BigDecimal
+  currentBalance: BigDecimal
+  depositOnAccount: BigDecimal
+  billingCustomerId: String
+  phone2: String
+  phone2Ext: String
+  cellPhone: String
+  faxPhone: String
+  email: String
+  serviceContact: String
+  general: Boolean
+  locationId: Long
+  comments: String
+  paymentMethodName: String
+  paymentTypeName: String
+  creditCardNumber: String
+  creditCardName: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  lastName2: String
+  firstName2: String
+  phone3: String
+  phone3Ext: String
+  phone4: String
+  phone4Ext: String
+  noEmail: Boolean
+  arReceivableDto: [ArReceivableDtoResponse]
+  arBillingCustomerCommunicationPreferenceDto: [ArBillingCustomerCommunicationPreferenceDtoResponse]
+}
+
+type AccountQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  account: AccountDetail
+}
+
+input AddCallerID {
+  # The 3rd Party call key.
+  callKey: String!
+
+  # The CallerID user key configured on both systems.
+  # A valid UserKey must be passed that matches the UserKey filled out in Successware21.
+  userKey: String!
+
+  # The number of the caller.
+  callerNumber: String
+
+  # The phone number that was called by the caller. Must be present if no CompanyNo is supplied.
+  dnis: String
+
+  # The number of the caller.
+  callerName: String
+
+  # The street address of the caller.
+  street: String
+
+  # The city of the caller.
+  city: String
+
+  # The 2 character state of the caller.
+  state: String
+
+  # The zip code of the caller.
+  zip: String
+}
+
+type AgreementEquipmentDto {
+  id: Long
+  locationUnitId: Long
+  agreementId: Long
+  locationUnitDto: LocationUnitDto
+}
+
+type AgreementObj {
+  agreementId: Long
+  agreementNumber: String
+  locationId: Long
+  serviceAccountId: Long
+  perpetual: Boolean
+  startDate: String
+  endDate: String
+  startDateLocal: String
+  endDateLocal: String
+}
+
+type AgreementOutput {
+  id: Long
+  status: String
+  agreementNumber: String
+  cover: Int
+  csrSale: Boolean
+  billingMethod: Int
+  renewedFromId: Long
+  lastNotice: String
+  year: Int
+  createdDate: String
+  saleDate: String
+  startDate: String
+  endDate: String
+  renewalId: Long
+  invoiced: Boolean
+  perpetual: Boolean
+  renewalCreated: Boolean
+  renewalAccepted: Boolean
+  renewalFailed: Boolean
+  renewalCreatedDate: String
+  renewDate: String
+  renewal: Boolean
+  activated: Boolean
+  fulfilled: Boolean
+  canceled: Boolean
+  terminated: Boolean
+  terminateDate: String
+  billStartDate: String
+  billFrequency: String
+  methodOfPayment: String
+  paymentType: String
+  nextVisitMonth: Int
+  nextVisitYear: Int
+  lastBilling: String
+  nextBilling: String
+  salesPerson: String
+  totalPrice: Float
+  deposit: Float
+  billAmount: Float
+  collectPerVisit: Float
+  taxBill: Boolean
+  visitCount: Int
+  compVisitCount: Int
+  cancelVisitCount: Int
+  preferredTech: String
+  agreementEquipAge: Int
+  visitLeft: Int
+  department: agreementDepartmentResponse
+  agreementType: agreementTypeResponse
+  invoice: invoiceAgreementResponse
+  billDayOfMonth: Int
+  xchargeAllowDuplicate: Boolean
+  renewalNoticesCount: String
+  creditCardSortField: String
+  compBillingCount: Int
+  businessAgreementId: Long
+  businessAgreementNumber: Long
+  serviceAccountId: Long
+  billAmountMaintenance: Float
+  billAmountService: Float
+  useDefer: Boolean
+  useReserve: Boolean
+  allowVisitsInStartMonth: Boolean
+  serviceDeposit: Float
+  depositDeferred: Float
+  maintenanceDeposit: Float
+  collectPerVisitMaintenance: Float
+  collectPerVisitService: Float
+  totalDeferred: Float
+  deferralUsed: Float
+  amortizeDefer: Boolean
+  creditPerVisit: Float
+  lastVisit: String
+  floatVisit: Boolean
+  agreementVisitScheduleId: Long
+  visitResumeMonth: Int
+  visitResumeYear: Int
+  locationId: Long
+  visitStartMonth: Int
+  visitStartYear: Int
+  discountTypeId: Long
+  visitPerYear: Int
+  preferredTechEmployeeId: Long
+  totalNumberBilling: Int
+  gen2RenewFromId: Long
+  activationFee: Float
+  maintenancePrice: Float
+  visitsPerYear: Int
+  servicePrice: Float
+  depositReserved: Float
+  commissionNew: Float
+  commissionAnniversary: Float
+  commissionRenew: Float
+  balance: Float
+  billingsPerYear: Int
+  renewalIdCreated: Long
+  originalAgreementNumber: String
+  originalSalesPerson: String
+  originalStartDate: String
+  agreementTypeName: String
+  originalEndDate: String
+  originalReserve: Float
+  reserveCharges: Float
+  comment: String
+}
+
+type AgreementQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  tenantLocalTimeZone: String
+  agreement: genRockAgreementResponse
+}
+
+input ArAgreementEquipment {
+  id: Long
+  locationUnitId: Long
+  gen2AgreementId: Long
+  agreementId: Long
+  unitType: String
+  location: String
+}
+
+type ArBillingAccountGen2Response {
+  id: Long
+  billingCustomerId: String
+  apContact: String
+  serviceContact: String
+  creditLimit: Float
+  customerRating: customerRatingGen2Response
+  balanceDue: Float
+  paymentMethod: ArBillingCustomerPaymentMethodGen2Response
+  badRiskCustomer: Boolean
+  doNotSolicit: Boolean
+  happyChecks: Boolean
+  creditCardNumber: String
+  creditCardName: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  financeCharge: Boolean
+  active: Boolean
+  general: Boolean
+  taxExemptNumber: String
+  counterSale: Boolean
+  xchargeAlias: String
+  xchargeClean: Boolean
+  checkBankAccountNumber: String
+  salesPersonId: Long
+
+  # Deprecated. Billing account will get linked to service account using updateServiceAccount query.
+  serviceAccountId: Long
+  statement: Boolean
+  paymentTerms: ArBillingCustomerPaymentTermsGen2Response
+  currentBalance: Float
+  over30Balance: Float
+  over60Balance: Float
+  over90Balance: Float
+  openCount: Int
+  retainedBalance: Float
+  noStatement: Boolean
+  lastAgeDate: String
+  createdBy: String
+  createdAt: String
+  financeChargeAmount: Float
+  noFinanceCharge: Boolean
+  lastFinanceDate: String
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arBillingLocationId: Long
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arAlternateLocationId: Long
+  totalInvoiceAmount: Float
+  totalAdjustAmount: Float
+  totalRefundAmount: Float
+  totalPaidAmount: Float
+  title: String
+  firstName: String
+  lastName: String
+  alternateFirstName: String
+  alternateLastName: String
+  comments: String
+  companyName: String
+  cellPhone: String
+  customerChangeUtcdt: String
+  customerTitle2: String
+  faxPhone: String
+  noEmail: Boolean
+  primaryAddress: Boolean
+  phoneNumber: String
+  phoneNumber2: String
+  phoneNumber3: String
+  phoneNumber4: String
+  email: String
+  name2InAddress: Boolean
+  alternateTitle: String
+  phoneExtension: String
+  phone2Extension: String
+  phone3Extension: String
+  phone4Extension: String
+  arAlternateAddress: arAlternateAddressGen2Response
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  depositList: [ArReceivableDto]
+  depositOnAccount: Float
+}
+
+type ArBillingCustomerCommunicationPreferenceDtoResponse {
+  id: Long
+  optIn: Boolean
+  optOut: Boolean
+  arBillingCustomerId: Long
+  communicationClass: CommunicationClassDtoResponse
+}
+
+type ArBillingCustomerGen2Response {
+  id: Long
+  billingCustomerId: String
+  apContact: String
+  serviceContact: String
+  creditLimit: Float
+  customerRating: customerRatingGen2Response
+  balanceDue: Float
+  paymentMethod: ArBillingCustomerPaymentMethodGen2Response
+  badRiskCustomer: Boolean
+  doNotSolicit: Boolean
+  happyChecks: Boolean
+  creditCardNumber: String
+  creditCardName: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  financeCharge: Boolean
+  active: Boolean
+  general: Boolean
+  taxExemptNumber: String
+  counterSale: Boolean
+  xchargeAlias: String
+  xchargeClean: Boolean
+  checkBankAccountNumber: String
+  salesPersonId: Long
+
+  # Deprecated. Billing account will get linked to service account using updateServiceAccount query.
+  serviceAccountId: Long
+  statement: Boolean
+  paymentTerms: ArBillingCustomerPaymentTermsGen2Response
+  currentBalance: Float
+  over30Balance: Float
+  over60Balance: Float
+  over90Balance: Float
+  openCount: Int
+  retainedBalance: Float
+  noStatement: Boolean
+  lastAgeDate: String
+  createdBy: String
+  createdAt: String
+  financeChargeAmount: Float
+  noFinanceCharge: Boolean
+  lastFinanceDate: String
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arBillingLocationId: Long
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arAlternateLocationId: Long
+  totalInvoiceAmount: Float
+  totalAdjustAmount: Float
+  totalRefundAmount: Float
+  totalPaidAmount: Float
+  title: String
+  firstName: String
+  lastName: String
+  alternateFirstName: String
+  alternateLastName: String
+  comments: String
+  companyName: String
+  cellPhone: String
+  customerChangeUtcdt: String
+  customerTitle2: String
+  faxPhone: String
+  noEmail: Boolean
+  primaryAddress: Boolean
+  phoneNumber: String
+  phoneNumber2: String
+  phoneNumber3: String
+  phoneNumber4: String
+  email: String
+  name2InAddress: Boolean
+  alternateTitle: String
+  phoneExtension: String
+  phone2Extension: String
+  phone3Extension: String
+  phone4Extension: String
+  arAlternateAddress: arAlternateAddressGen2Response
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+}
+
+type ArBillingCustomerPaymentMethodGen2Response {
+  id: Long
+  paymentMethodName: String
+  paymentType: ArBillingCustomerPaymentTypeGen2Response
+}
+
+input ArBillingCustomerPaymentMethodRequest {
+  id: Long
+  paymentMethodName: String
+  paymentType: ArBillingCustomerPaymentTypeRequest
+}
+
+type ArBillingCustomerPaymentMethodResponse {
+  id: Long
+  paymentMethodName: String
+  paymentType: ArBillingCustomerPaymentTypeResponse
+}
+
+type ArBillingCustomerPaymentTermsGen2Response {
+  id: Long
+  termsCode: String
+  termsDescription: String
+}
+
+input ArBillingCustomerPaymentTermsRequest {
+  id: Long
+  termsCode: String
+  termsDescription: String
+}
+
+type ArBillingCustomerPaymentTermsResponse {
+  id: Long
+  termsCode: String
+  termsDescription: String
+}
+
+type ArBillingCustomerPaymentTypeGen2Response {
+  id: Long
+  paymentTypeName: String
+}
+
+input ArBillingCustomerPaymentTypeRequest {
+  id: Long
+  paymentTypeName: String
+}
+
+type ArBillingCustomerPaymentTypeResponse {
+  id: Long
+  paymentTypeName: String
+}
+
+type ArBillingCustomerResponse {
+  id: Long
+  billingCustomerId: String
+  apContact: String
+  serviceContact: String
+  creditLimit: Float
+  customerRating: customerRatingResponse
+  balanceDue: Float
+  paymentMethod: ArBillingCustomerPaymentMethodResponse
+  badRiskCustomer: Boolean
+  doNotSolicit: Boolean
+  happyChecks: Boolean
+  creditCardNumber: String
+  creditCardName: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  financeCharge: Boolean
+  active: Boolean
+  general: Boolean
+  taxExemptNumber: String
+  counterSale: Boolean
+  xchargeAlias: String
+  xchargeClean: Boolean
+  checkBankAccountNumber: String
+  salesPersonId: Long
+
+  # Deprecated. Billing account will get linked to service account using updateServiceAccount query.
+  serviceAccountId: Long
+  statement: Boolean
+  paymentTerms: ArBillingCustomerPaymentTermsResponse
+  currentBalance: Float
+  over30Balance: Float
+  over60Balance: Float
+  over90Balance: Float
+  openCount: Int
+  retainedBalance: Float
+  noStatement: Boolean
+  lastAgeDate: String
+  createdBy: String
+  createdAt: String
+  financeChargeAmount: Float
+  noFinanceCharge: Boolean
+  lastFinanceDate: String
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arBillingLocationId: Long
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arAlternateLocationId: Long
+  totalInvoiceAmount: Float
+  totalAdjustAmount: Float
+  totalRefundAmount: Float
+  totalPaidAmount: Float
+  title: String
+  firstName: String
+  lastName: String
+  alternateFirstName: String
+  alternateLastName: String
+  comments: String
+  companyName: String
+  cellPhone: String
+  customerChangeUtcdt: String
+  customerTitle2: String
+  faxPhone: String
+  noEmail: Boolean
+  primaryAddress: Boolean
+  phoneNumber: String
+  phoneNumber2: String
+  phoneNumber3: String
+  phoneNumber4: String
+  email: String
+  name2InAddress: Boolean
+  alternateTitle: String
+  phoneExtension: String
+  phone2Extension: String
+  phone3Extension: String
+  phone4Extension: String
+  arAlternateAddress: arAlternateAddressResponse
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  depositList: [ArReceivableDto]
+  depositOnAccount: Float
+  lastAgeDateLocal: String
+  createdAtLocal: String
+  lastFinanceDateLocal: String
+  customerChangeLocal: String
+}
+
+type ArBillingCustomerServiceResponse {
+  id: Long
+  billingCustomerId: String
+  apContact: String
+  serviceContact: String
+  creditLimit: Float
+  customerRating: customerRatingGen2Response
+  balanceDue: Float
+  paymentMethod: ArBillingCustomerPaymentMethodGen2Response
+  badRiskCustomer: Boolean
+  doNotSolicit: Boolean
+  happyChecks: Boolean
+  creditCardNumber: String
+  creditCardName: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  financeCharge: Boolean
+  active: Boolean
+  general: Boolean
+  taxExemptNumber: String
+  counterSale: Boolean
+  xchargeAlias: String
+  xchargeClean: Boolean
+  checkBankAccountNumber: String
+  salesPersonId: Long
+
+  # Deprecated. Billing account will get linked to service account using updateServiceAccount query.
+  serviceAccountId: Long
+  statement: Boolean
+  paymentTerms: ArBillingCustomerPaymentTermsGen2Response
+  currentBalance: Float
+  over30Balance: Float
+  over60Balance: Float
+  over90Balance: Float
+  openCount: Int
+  retainedBalance: Float
+  noStatement: Boolean
+  lastAgeDate: String
+  createdBy: String
+  createdAt: String
+  financeChargeAmount: Float
+  noFinanceCharge: Boolean
+  lastFinanceDate: String
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arBillingLocationId: Long
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arAlternateLocationId: Long
+  totalInvoiceAmount: Float
+  totalAdjustAmount: Float
+  totalRefundAmount: Float
+  totalPaidAmount: Float
+  title: String
+  firstName: String
+  lastName: String
+  alternateFirstName: String
+  alternateLastName: String
+  comments: String
+  companyName: String
+  cellPhone: String
+  customerChangeUtcdt: String
+  customerTitle2: String
+  faxPhone: String
+  noEmail: Boolean
+  primaryAddress: Boolean
+  phoneNumber: String
+  phoneNumber2: String
+  phoneNumber3: String
+  phoneNumber4: String
+  email: String
+  name2InAddress: Boolean
+  alternateTitle: String
+  phoneExtension: String
+  phone2Extension: String
+  phone3Extension: String
+  phone4Extension: String
+  arAlternateAddress: arAlternateAddressGen2Response
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  createdAtLocal: String
+  customerChangeLocal: String
+  lastFinanceDateLocal: String
+  lastAgeDateLocal: String
+}
+
+input ArInvoiceInput {
+  assignmentId: Long
+  id: Long!
+  invoiceNumber: String!
+  taxCodeId: Long
+  taxCode: String
+  taxPercent: BigDecimal
+  paymentAmount: BigDecimal
+  modifiedBy: String
+  signatureWorkAuth: String
+  signatureWorkApplication: String
+  signaturePayment: String
+  hasInvoiceDiscount: Boolean
+  readyToPost: Boolean
+  modified: String
+  department: DepartmentInput!
+  jobId: Long
+  locationId: Long
+  depositReceivableId: Long
+  depositBalanceAvailable: BigDecimal
+  workSuggested: String
+  creditCardPaymentId: Long
+  invoiceType: invoiceTypeRequest
+  invoiceDate: Date
+  totalAmount: Float
+  dueDate: Date
+  printDate: Date
+  printBatch: Int
+  customerPoNumber: String
+  posted: Boolean
+  adjusted: Boolean
+  adjusting: Boolean
+  canceled: Boolean
+  printInBatch: Boolean
+  invoiceKind: String
+  balance: Float
+  saleEst: Boolean
+  verified: Boolean
+  creditMemo: Boolean
+  invoiceNoPrefix: String
+  invoiceDetailLevel: String
+  invoiceItemType: String
+  stateCode: String
+  lPrintP: Boolean
+  lPrintL: Boolean
+  lPrintM: Boolean
+  printTaskNotes: Boolean
+  totalCost: Float
+  subTotal: Float
+  netBalance: Float
+  taxAmount: Float
+  taxableAmount: Float
+  nonTaxableAmount: Float
+  taxAmountDue: Float
+  taxIncluded: Float
+  taxIncludedAmount: Float
+  lessAmount: Float
+  depositAmount: Float
+  discountAmount: Float
+  partSale: Float
+  laborSale: Float
+  miscSale: Float
+  subAfterDiscount: Float
+  totalStdHours: Float
+  statePercent: Float
+  stateCap: Float
+  stateTaxableAmount: Float
+  stateNonTaxableAmount: Float
+  discountPercent: Int
+  onParts: Boolean
+  onLabor: Boolean
+  onMisc: Boolean
+  partsTaxable: Boolean
+  laborTaxable: Boolean
+  miscTaxable: Boolean
+  manualTax: Boolean
+  printInvoice: Boolean
+  postDate: Date
+  paymentDate: Date
+  discountTypeId: Long
+  paymentMethodId: Long
+  paymentTermsId: Long
+  paymentTypeId: Long
+  salesPersonId: Long
+  invoiceItemCount: Int
+  diagItemCount: Int
+  moneyItemCount: Int
+  extraItemCount: Int
+  agreeNewCount: Int
+  agreeRenewCount: Int
+  chargeWCount: Int
+  chargeACount: Int
+  alt1Code: String
+  alt1Percent: Float
+  alt1Cap: Float
+  alt1TaxableAmount: Float
+  alt1NonTaxableAmount: Float
+  alt2Code: String
+  alt2Percent: Float
+  alt2Cap: Float
+  alt2TaxableAmount: Float
+  alt2NonTaxableAmount: Float
+  locked: Boolean
+  retainByPercent: Boolean
+  retainManual: Boolean
+  retainageWithheld: Float
+  retainagePercent: Float
+  creditAmount: Float
+  retainageBilled: Float
+  retainageAmount: Float
+  subTotalWarranty: Float
+  subTotalAgreement: Float
+  discountDepartmentId: Long
+  taxableDiscountFlag: Boolean
+  nonTaxableDiscountFlag: Boolean
+  includeTaxDiscountFlag: Boolean
+  serviceAccountId: ID
+  achTransactionId: Long
+  verifiedBy: String
+  verifiedAt: String
+  canceledBy: String
+  invoiceNumberNumeric: Long
+  accNumberChanged: Boolean
+  checkAccNumberChanged: Boolean
+  gen2InvoiceId: ID
+  returnPartsToInventoryFlag: Boolean
+  reversePaybaseFlag: Boolean
+  projectId: ID
+  changeOrderId: ID
+  notes: String
+  aiaApplicationNumber: Int
+  aiaPeriodTo: String
+  workDone: String
+  defaultWarehouseId: Long
+  defaultWarehouseNumber: String
+  invoiceItem: [ArInvoiceItemInput]
+  invoiceMemo: [ArInvoiceMemo]
+  project: projectRequest
+}
+
+input ArInvoiceItemDetailInput {
+  id: Long
+  unitOfMeasure: String
+  employeeId: Long
+  totalCost: Float
+  totalPrice: Float
+  detailType: String
+  deleted: Boolean
+  autoManage: Boolean
+  phaseId: ID
+  timecardEntryId: ID
+  imported: Boolean
+  subAccountId: Long
+  glAccountMasterId: Long
+  invoiceId: Long
+  invoiceItemId: Long
+  itemNumber: String
+  description: String
+  pricebookItemId: Long
+  itemType: String
+  quantity: BigDecimal
+  unitCost: BigDecimal
+  markup: BigDecimal
+  unitPrice: BigDecimal
+  serialNumber: String
+  serialized: Boolean
+}
+
+input ArInvoiceItemEquipment {
+  id: Long
+  invoiceItemId: Long
+  locationUnitId: Long
+  invoiceId: Long
+  unitType: String
+  location: String
+}
+
+input ArInvoiceItemInput {
+  id: Long
+  reportedHours: BigDecimal
+  invoiceId: Long
+  saleTypeId: Long
+  saleType: SaleTypeInput
+  department: DepartmentInput!
+  itemNumber: String!
+  discountTypeId: Long
+  discountPercent: Int
+  discountType: String
+  autoDetailCount: Int
+  itemType: String!
+  itemAsTask: Boolean
+  description: String
+  quantity: BigDecimal
+  priceLevel: String
+  unitPrice: BigDecimal
+  includeTax: Boolean
+  discountable: Boolean
+  addTax: Boolean!
+  chargeTo: String!
+  agreementId: Long
+  gen2InvoiceItemId: Long
+  gen2AgreementId: Long
+  gen2WarrantyId: Long
+  diagItem: Boolean
+  extraItem: Boolean
+  flatRateId: Long
+  totalSale: BigDecimal
+  totalAfterDiscount: BigDecimal
+  pricebookItemId: Long
+  moneyItem: Boolean
+  chargeDate: Date
+  calculatePriceFromDetail: Boolean
+  deleteExistingDetails: Boolean
+  useRetainageWithheld: Boolean
+  retainageWithheld: Float
+  retainageBilled: Float
+  detailCount: Int
+  paybaseDate: Date
+  paybasePayItem: String
+  paybasePayItemId: ID
+  payBase: Float
+  projectPhaseId: ID
+  glAccountMasterId: ID
+  glSubAccountId: ID
+  flatRatePriceId: Long
+  employeeId: ID
+  glAccountMasterNumber: ID
+  taxAmount: Float
+  arInvoicedVisits: [ArInvoicedVisit]
+  arInvoiceItemEquipments: [ArInvoiceItemEquipment]
+  invoiceItemDetails: [ArInvoiceItemDetailInput]
+  arInvoicedAgreements: [ArInvoicedAgreement]
+}
+
+type ArInvoiceItemOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  invoiceNumber: String
+  invoiceItemId: Long
+}
+
+input ArInvoiceMemo {
+  id: Long
+  invoiceId: Long
+  workSuggested: String
+}
+
+type ArInvoiceOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  invoiceNumber: String
+}
+
+input ArInvoicedAgreement {
+  id: Long
+  agreementId: Long
+  gen2AgreementId: Long
+  agreementNumber: String
+  renewedFromID: Long
+  agreementType: String
+  years: Int
+  startDate: String
+  totalPrice: BigDecimal
+  deposit: BigDecimal
+  invoiceId: Long
+  arAgreementEquipments: [ArAgreementEquipment]
+}
+
+input ArInvoicedVisit {
+  agreementVisitId: Long
+  visitType: String
+  visitPrice: BigDecimal
+  invoiceId: Long
+  invoiceItemId: Long
+}
+
+type ArReceivableDto {
+  id: Long
+  balance: Float
+  totalAmount: Float
+  comment: String
+  itemDate: String
+  itemDateLocal: String
+}
+
+type ArReceivableDtoResponse {
+  id: Long
+  balance: Float
+  comment: String
+  totalAmount: Float
+  itemDate: String
+  itemDateLocal: String
+}
+
+type Assignment {
+  id: Long
+  status: String
+  job: Job
+  employeeCode: String
+  employeeFullName: String
+  startTimePreference: String
+  endTimePreference: String
+  startTimePreferenceLocal: String
+  endTimePreferenceLocal: String
+  serviceAccount: ServiceAccount
+  assignedAt: String
+  notifiedAt: String
+  scheduledFor: String
+  dispatchedAt: String
+  onSiteAt: String
+  completedAt: String
+  assignedAtLocal: String
+  notifiedAtLocal: String
+  scheduledForLocal: String
+  dispatchedAtLocal: String
+  onSiteAtLocal: String
+  completedAtLocal: String
+  estimatedDuration: Int
+  confirmedByHomeOwner: Boolean
+  attentionNote: String
+  isPrimary: Boolean
+  priority: Boolean
+  timePreference: String
+  mapStatus: String
+  referenceStatus: String
+  isCompleted: Boolean
+}
+
+type AssignmentInJobHistory {
+  id: Long
+  employeeCode: String
+  scheduledFor: String
+  isPrimary: Boolean
+  status: String
+}
+
+type AssignmentResponse {
+  id: Long
+  employeeCode: String
+  primaryEmployeeCode: String
+  status: String
+  estimatedDuration: Int
+  confirmedAt: String
+  assignedAt: String
+  scheduledFor: String
+  notifiedAt: String
+  dispatchedAt: String
+  onSiteAt: String
+  completedAt: String
+  attentionNote: String
+  isPrimary: Boolean
+  timePreference: String
+  startTimePreference: String
+  endTimePreference: String
+  createdAtLocal: String
+  confirmedAtLocal: String
+  assignedAtLocal: String
+  scheduledForLocal: String
+  notifiedAtLocal: String
+  dispatchedAtLocal: String
+  onSiteAtLocal: String
+  completedAtLocal: String
+  startTimePreferenceLocal: String
+  endTimePreferenceLocal: String
+}
+
+type BedrockTaxCodeResponse {
+  code: String
+  description: String
+  stateCode: String
+  statePercentage: BigDecimal
+  stateCap: BigDecimal
+  alt1Code: String
+  alt1Percentage: BigDecimal
+  alt1Cap: BigDecimal
+  alt2Code: String
+  alt2Percentage: BigDecimal
+  alt2Cap: BigDecimal
+  partsTaxable: Boolean
+  laborTaxable: Boolean
+  miscellaneousTaxable: Boolean
+  isActive: Boolean
+}
+
+# An arbitrary precision signed decimal
+scalar BigDecimal
+
+type BillingAccountOutput {
+  mainArBillingCustomer: [ArBillingCustomerGen2Response]
+  otherArBillingCustomer: [ArBillingCustomerGen2Response]
+}
+
+type BillingCustomerOutput {
+  successful: Boolean
+  message: String
+  billingCustomer: ArBillingCustomerResponse
+  errors: [Error]
+}
+
+type BillingCustomerServiceOutput {
+  mainArBillingCustomer: [ArBillingCustomerServiceResponse]
+  otherArBillingCustomer: [ArBillingCustomerServiceResponse]
+}
+
+type BookitAssignmentResponse {
+  id: Long
+  employeeCode: String
+  primaryEmployeeCode: String
+  status: String
+  estimatedDuration: Int
+  confirmedAt: String
+  assignedAt: String
+  scheduledFor: String
+  notifiedAt: String
+  dispatchedAt: String
+  onSiteAt: String
+  completedAt: String
+  attentionNote: String
+  isPrimary: Boolean
+  timePreference: String
+  startTimePreference: String
+  endTimePreference: String
+}
+
+type BookitBaseOutputData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: Boolean
+}
+
+input BookitCallRequest {
+  id: ID
+  phoneNumber: String
+  callReason: String
+  callType: String
+  notes: String
+  serviceAccountId: ID
+  needFollowUp: Boolean
+  callDate: Date!
+  inbound: Boolean!
+  priority: Boolean
+  status: String
+  abortCode: String
+}
+
+type BookitCallResponse {
+  id: ID
+  phoneNumber: String
+  callReason: String
+  callType: String
+  notes: String
+  serviceAccountId: ID
+  needFollowUp: Boolean
+  callDate: String!
+  inbound: Boolean!
+  priority: Boolean
+  status: String
+  abortCode: String
+}
+
+type BookitCallResponseData {
+  response: BookitCallResponse
+  successful: Boolean
+  message: String
+  errors: [Error]
+}
+
+input BookitCancelJobRequest {
+  jobId: ID!
+  canceledNotes: String
+}
+
+input BookitCreateAttachmentRequest {
+  sourceId: Long
+  sourceType: String
+  name: String
+  extension: String
+  url: String
+  fileSize: Int
+  signedFinal: Boolean
+}
+
+type BookitCreateAttachmentResponse {
+  id: Long
+  sourceId: Long
+  sourceType: String
+  name: String
+  extension: String
+  url: String
+  fileSize: Int
+  signedFinal: Boolean
+}
+
+type BookitCreateAttachmentResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitCreateAttachmentResponse
+}
+
+input BookitCreateJobRequest {
+  jobClass: String
+  jobType: String
+  jobTypeDescription: String
+  workRequestNotes: String
+  timePreference: String
+  serviceAccountId: ID!
+  locationId: ID!
+  estimatedDuration: Int!
+  category: String!
+  priority: Boolean
+  scheduledFor: Date
+  status: String
+  zoneId: ID
+  callId: ID
+  isJobHavingIssue: Boolean
+  startTimePreference: Date
+  endTimePreference: Date
+  employeeCode: String
+  saleEst: Boolean
+  priorityLevel: Int
+  salesJobId: ID
+  serviceType: String
+  widgetId: ID
+}
+
+type BookitCreateJobResponse {
+  id: ID
+  number: String
+}
+
+type BookitCreateJobResponseData {
+  response: BookitCreateJobResponse
+  successful: Boolean
+  message: String
+  errors: [Error]
+}
+
+input BookitCreateLocationRequest {
+  type: String
+  companyName: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  lotId: String
+  subdivision: String
+  directionNote: String
+  ownerOccupied: Boolean
+  latitude: Float
+  longitude: Float
+  isBillingLocation: Boolean
+  isServiceLocation: Boolean
+  zone: String
+  zoneId: ID
+}
+
+input BookitCreateServiceAccountRequest {
+  customer: BookitCustomerRequest!
+  location: BookitLocationRequest!
+}
+
+type BookitCreateServiceAccountResponse {
+  id: Long
+  customerId: Long
+  locationId: Long
+}
+
+type BookitCreateServiceAccountResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitCreateServiceAccountResponse
+}
+
+input BookitCreateServiceLocationRequest {
+  serviceAccountId: ID!
+  location: BookitLocationRequest!
+}
+
+input BookitCustomerRequest {
+  firstName: String
+  lastName: String
+  phoneNumber: String!
+  extension: String
+  email: String
+  title: String
+  leadSourceTypeId: ID
+  leadSourceId: ID
+  altFirstName: String
+  altLastName: String
+  referral: String
+  noEmail: Boolean
+  companyName: String
+  commercial: Boolean
+}
+
+type BookitCustomerResponse {
+  id: Long
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  extension: String
+  email: String
+  title: String
+  leadSource: String
+  sourceType: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  altFirstName: String
+  altLastName: String
+  referral: String
+  noEmail: Boolean
+  alternameNameInAddress: Boolean
+  alternateTitle: String
+  phone1Ext: String
+  phone2: String
+  phone2Ext: String
+  phone3: String
+  phone3Ext: String
+  phone4: String
+  phone4Ext: String
+  companyName: String
+  commercial: Boolean
+}
+
+type BookitJobClassResponse {
+  id: Long
+  jobClassCode: String
+  active: Boolean
+  alias: String
+  saleEstimation: Boolean
+  jobTypes: [BookitJobTypeResponse]
+}
+
+type BookitJobResponse {
+  id: Long
+  assignments: [BookitAssignmentResponse]
+  locationResponse: BookitLocationResponse
+  jobClassAlias: String
+  jobTypeAlias: String
+  jobType: String
+  jobClass: String
+  serviceTypeAlias: String
+  serviceType: String
+}
+
+type BookitJobResponseData {
+  successful: Boolean
+  message: String
+  response: [BookitJobResponse]
+  errors: [Error]
+}
+
+type BookitJobTypeResponse {
+  id: Long
+  jobTypeCode: String
+  jobTypeDescription: String
+  active: Boolean
+  alias: String
+}
+
+type BookitLocationDetailResponse {
+  address: String
+  city: String
+  zipCode: String
+  state: String
+  latitude: String
+  longitude: String
+}
+
+type BookitLocationDetailResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitLocationDetailResponse
+}
+
+input BookitLocationRequest {
+  id: ID
+  address1: String
+  address2: String
+  city: String
+  state: String!
+  zipCode: String
+  type: String!
+  companyName: String
+  lotId: String
+  subdivision: String
+  directionNote: String
+  ownerOccupied: Boolean!
+  latitude: Float
+  longitude: Float
+  isBillingLocation: Boolean
+  isServiceLocation: Boolean
+  zone: String
+  zoneId: String
+}
+
+type BookitLocationResponse {
+  id: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  type: String
+  companyName: String
+  lotId: String
+  subdivision: String
+  directionNote: String
+  ownerOccupied: Boolean
+  companycamUrl: String
+  zone: String
+  zoneId: ID
+  mapCode: String
+}
+
+type BookitLocationResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitLocationResponse
+}
+
+input BookitOTPRequest {
+  widgetId: String!
+  loginUser: String!
+  countryCode: String
+}
+
+type BookitOutput {
+  success: Boolean
+  message: String
+}
+
+type BookitRecommendedLocationResponse {
+  id: ID
+  description: String
+}
+
+type BookitRecommendedLocationResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: [BookitRecommendedLocationResponse]
+}
+
+type BookitScheduleBlockResponse {
+  id: Long
+  date: String
+  startTime: String
+  startTimeText: String
+  endTime: String
+  endTimeText: String
+  scheduled: Int
+  slots: Int
+  allowOverbooking: Boolean
+}
+
+type BookitScheduleGroupBlockResponse {
+  groupTimeSlotId: Long
+  groupName: String
+  scheduleStartDate: String
+  scheduleEndDate: String
+  scheduleBlock: [BookitScheduleBlockResponse]
+}
+
+type BookitScheduleGroupBlockResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitScheduleGroupBlockResponse
+}
+
+input BookitSearchJobRequest {
+  jobNumbers: [String]
+  ids: [Long]
+  locationId: Long
+  serviceAccountId: Long
+  scheduledFor: String
+  callIds: [Long]
+  beginScheduledFor: String
+  endScheduledFor: String
+  customerName: [String]
+  phoneNumber: [String]
+  futureJob: Boolean
+}
+
+input BookitSearchServiceAccountRequest {
+  customerId: Long
+  phoneNumber: String
+  serviceAccountId: Long
+  emailId: String
+  isBookit: Boolean
+}
+
+type BookitSendSMSNotificationResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: SMSNotificationResponse
+}
+
+type BookitServiceAccountResponse {
+  id: Long
+  customer: BookitCustomerResponse
+  serviceLocations: [BookitLocationResponse]
+  primaryBillingCustomerId: Long
+}
+
+type BookitServiceAccountResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitServiceAccountResponse
+}
+
+input BookitUpdateAssignmentRequest {
+  id: ID!
+  scheduledFor: Date
+  timePreference: String
+  startTimePreference: Date
+  endTimePreference: Date
+  referenceStatus: String
+  employeeCode: String
+  assignedAt: String
+  notifiedAt: String
+  dispatchedAt: String
+  onSiteAt: String
+  completedAt: String
+  status: String
+  estimatedDuration: Int
+}
+
+input BookitUpdateCustomerRequest {
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  extension: String
+  email: String
+  title: String
+  leadSourceTypeId: ID
+  leadSourceId: ID
+  altFirstName: String
+  altLastName: String
+  referral: String
+  noEmail: Boolean
+  companyName: String
+  commercial: Boolean
+}
+
+input BookitUpdateServiceAccountRequest {
+  id: ID!
+  customer: BookitUpdateCustomerRequest
+}
+
+input BookitUpdateServiceLocationRequest {
+  serviceAccountId: ID!
+  location: BookitLocationRequest!
+}
+
+type BookitWidgetDto {
+  id: Long
+  widgetName: String
+  inUse: Boolean
+  useBusinessSetupLogo: Boolean
+  useBusinessSetupInformation: Boolean
+  logoUrl: String
+  companyEmail: String
+  companyWebsite: String
+  companyPhoneNumber: String
+  companyName: String
+  companyAddress1: String
+  companyAddress2: String
+  companyCity: String
+  companyState: String
+  companyZipcode: String
+  updatedAt: String
+  googleAnalyticsPropertyId: String
+  bookitWidgetMappings: [BookitWidgetMappingResponse]
+}
+
+type BookitWidgetMappingResponse {
+  id: Long
+  serviceTypeName: String
+  serviceTypeDescription: String
+  alias: String
+  active: Boolean
+  logoUrl: String
+  jobClasses: [BookitJobClassResponse]
+}
+
+type BookitWidgetResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitWidgetDto
+}
+
+type BookitWidgetSettingDto {
+  id: Long
+  termsAndConditionsConfiguration: Boolean
+  termsAndConditionsCompact: String
+  termsAndConditionsUrl: String
+  termsAndConditionsFull: String
+}
+
+type BookitWidgetSettingResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: BookitWidgetSettingDto
+}
+
+type CallerIDQueryData {
+  callerIDQueryRecord: CallerIDQueryRecord
+}
+
+type CallerIDQueryRecord {
+  # Primary key. Id generated while saving record in successware
+  callerId: Long
+
+  # Tenant id for company in successware Gen2 platform.(this can be treated as company id not company number or master id)
+  tenantId: Long
+
+  # The 3rd Party call key.
+  callKey: String
+
+  # The CallerID user key configured on both systems.
+  userKey: String
+
+  # The timestamp(in UTC) the record was created in SWAPI.
+  createDateTime: String
+
+  # The number of the caller.
+  callerNumber: String
+
+  # The phone number that was called by the caller.
+  dnis: String
+
+  # The name of the caller.
+  callerName: String
+
+  # The street address of the caller.
+  street: String
+
+  # The city of the caller.
+  city: String
+
+  # The 2 character state of the caller.
+  state: String
+
+  # The zip code of the caller.
+  zip: String
+
+  # Tenant id for company in successware Gen2 platform in which logged in user is taking call.
+  callTakenTenantId: Long
+
+  # The SW21 phone call ID.
+  phoneCallId: Long
+
+  # Tenant id for company in successware Gen2 platform in which logged in user is taking call.
+  callCleared: Boolean
+}
+
+# {
+#   "input": {
+#     "sessionRequest" : {
+#         "addCallerID" : {
+#             "callKey": "112312",
+#             "userKey": "221231",
+#             "callerNumber": "1198988423",
+#             "dnis": "98988423",
+#             "callerName": "Test Name",
+#             "street": "Test Street",
+#             "city": "New York",
+#             "state": "NY",
+#             "zip": "11012"
+#         }
+#     }
+#   }
+# }
+input CallerIdentityInput {
+  sessionRequest: SessionRequest!
+}
+
+type CallerIdentityOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  callerIDQueryData: CallerIDQueryData
+}
+
+type Campaign {
+  id: Long
+  startDate: String
+  endDate: String
+}
+
+input CancelJobInput {
+  id: Long!
+  canceledNotes: String
+  replaceNotes: Boolean
+}
+
+type CancelJobOutput {
+  successful: Boolean
+  message: String
+  cancelJob: CancelJobResponse
+  errors: [Error]
+}
+
+type CancelJobResponse {
+  id: Long!
+  canceledNotes: String
+}
+
+type CityQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  cities: [CityResponse]
+}
+
+type CityResponse {
+  id: Long
+
+  # city was primary key in legacy application so will be used as legacy id.
+  city: String
+  state: String
+  zip: String
+  zone: String
+  taxCode: String
+  zoneId: String
+}
+
+type CommunicationClassDtoResponse {
+  className: String
+}
+
+type CommunicationClassResponse {
+  id: Long
+  className: String
+  optInRequired: Boolean
+}
+
+type CommunicationPreferenceQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  communicationPreference: [LocationCommunicationPreferenceResponse]
+}
+
+input CreateJobCustomerInput {
+  isNewCustomer: Boolean!
+  jobClass: String!
+  jobType: String!
+  jobTypeDescription: String
+  timePreference: String
+  estimatedDuration: Int
+  callbackJobNumber: String
+  category: String!
+  scheduledFor: String
+  zoneId: Long
+  zone: String
+  departmentId: Long
+  departmentName: String
+  startTimePreference: String
+  endTimePreference: String
+  employeeCode: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  leadSourceType: String
+  leadSource: String
+  status: String
+  arBillingCustomerId: Long
+  saleEst: Boolean
+  customerPONumber: String
+  contact: String
+  claimNo: String
+  contractNo: String
+  sendBooked: Boolean
+  sendReminder: Boolean
+  callId: Long
+  unitId: Long
+  unitType: String
+  unitAge: Int
+  priority: Boolean
+  serviceAccountId: Long
+  workRequestNotes: String
+  customer: CustomerInput
+  location: LocationInput
+  scheduleText: String
+  isNotified: Boolean
+  priorityLevel: Int
+  dnis: String
+}
+
+# Sample Input:
+#
+# {
+#   "input": {
+#     "category": "Service",
+#     "jobClass": "Electrical",
+#     "jobType": "ElRep",
+#     "leadSourceTypeId": "10100000002",
+#     "leadSourceId": "10100000012",
+#     "workRequestNotes": "I need heater",
+#     "estimatedDuration": 180,
+#     "departmentId": "20",
+#     "scheduledFor": "1970-01-01T06:00:00Z",
+#     "priority": false,
+#     "employeeCode": null,
+#     "jobTypeDescription": "Electrical Repair/Service",
+#     "serviceAccountId": "361773627429195132",
+#     "locationId": "361773625684077948",
+#     "saleEst": true,
+#     "startTimePreference":"1970-01-01T06:00:00Z",
+#     "endTimePreference":"1970-01-01T06:00:00Z"
+#   }
+# }
+input CreateJobInput {
+  # fetched from reference library system. use getJobClasses query to get data.
+  jobClass: String!
+
+  # fetched from reference library system associated with job-class. use getJobClasses query to get
+  # data.
+  jobType: String!
+
+  # fetched from reference library system associated with job-class. use getJobClasses query to get
+  # data.
+  jobTypeDescription: String
+
+  # time interval (e.g. 6:00 PM - 8:00 PM)
+  timePreference: String
+
+  # This is service location id. use searchServiceAccounts query to get data.
+  locationId: Long!
+
+  # This must be in minutes and being fetched from reference library system associated with job-class.
+  # use getJobClasses query to get data.
+  estimatedDuration: Int!
+
+  # This is previous job number against which new job is being created and it's optional.
+  callbackJobNumber: String
+
+  # This is enum and value will be one of [SERVICE, VISIT, SERVICEANDVISIT]
+  category: String!
+
+  # If you want to create and schedule a job at same time then you can input date time
+  # scheduledFor is mandatory if employeeCode is being sent. Even if it is being sent as ""(empty string)
+  # (e.g. 2022-09-05T12:30:00Z) else keep is null
+  scheduledFor: String
+
+  # fetched from reference library. use fetchReferenceLibraryCities to get data based service location
+  zoneId: Long
+
+  # fetched from reference library system associated with job-class & job-type(by default).
+  # use getJobClasses query to get data. if getJobClasses does not have department associated with
+  # job-class use getDepartments.
+  departmentId: Long!
+
+  # If you want to schedule job while creating then it's required. this will be fetched from getScheduleBlocks query
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  startTimePreference: String
+
+  #  If you want to schedule job while creating then it's required. this will be fetched from getScheduleBlocks query
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  endTimePreference: String
+
+  # This is preferred technician employee code and it's optional while creating job.
+  # if you want to assign a job to technician you can input valid employee code.
+  # Please choose a valid scheduledFor date if you are going to assign a job else it will take
+  # default date and will be impossible to track.
+  employeeCode: String
+
+  # lead source type id fetched from reference library system.
+  # use fetchReferenceLibraryLeadSourceTypes to get data.
+  leadSourceTypeId: Long!
+
+  # lead source id fetched from reference library system  associated with lead-source.
+  # use fetchReferenceLibraryLeadSourceTypes to get data.
+  leadSourceId: Long!
+
+  # This is enum and value will be one of [ OPEN, CLOSED, ABORTED, CANCELED, INVOICED,
+  # POSTPENDING, SCHEDULED, COMPLETED]. If this field is null default value will be OPEN.
+  status: String
+
+  # use searchServiceAccounts to get data.
+  arBillingCustomerId: Long
+  saleEst: Boolean
+  customerPONumber: String
+  contact: String
+  claimNo: String
+  contractNo: String
+  sendBooked: Boolean
+  sendReminder: Boolean
+  callId: Long
+  priority: Boolean
+  serviceAccountId: Long!
+  workRequestNotes: String
+  isNotified: Boolean
+  priorityLevel: Int
+}
+
+type CreateJobOutput {
+  successful: Boolean
+  message: String
+  jobData: CreateJobResponse
+  errors: [Error]
+}
+
+type CreateJobResponse {
+  id: Long
+  number: String
+  jobClass: String
+  jobType: String
+  jobTypeDescription: String
+  timePreference: String
+  locationId: Long
+  estimatedDuration: Int
+  callbackJobNumber: String
+  category: String
+  scheduledFor: String
+  zoneId: Long
+  departmentId: Long
+  startTimePreference: String
+  endTimePreference: String
+  employeeCode: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  status: String
+  arBillingCustomerId: Long
+  saleEst: Boolean
+  customerPONumber: String
+  contact: String
+  claimNo: String
+  contractNo: String
+  sendBooked: Boolean
+  sendReminder: Boolean
+  callId: Long
+  priority: Boolean
+  serviceAccountId: Long
+
+  # This is Gen2 work request notes or Gen1 work instructions.
+  notes: String
+  startDate: String
+  endDate: String
+  assignments: [AssignmentResponse]
+}
+
+input CreateServiceAccountInput {
+  customer: CustomerInput!
+  location: LocationInput!
+}
+
+type CreateServiceAccountOutput {
+  successful: Boolean
+  message: String
+  serviceAccount: CreateServiceAccountResponse
+  errors: [Error]
+}
+
+type CreateServiceAccountResponse {
+  id: Long
+  customerId: Long
+  locationId: Long
+}
+
+type CreateUpdateDepartmentResponse {
+  successful: Boolean
+  message: String
+  department: DepartmentOutput
+  errors: [Error]
+}
+
+type CreateUpdateJobClassesResponse {
+  successful: Boolean
+  message: String
+  jobClass: jobClassResponse
+  errors: [Error]
+}
+
+type CreateUpdateJobTypeResponse {
+  successful: Boolean
+  message: String
+  jobType: JobTypeResponse
+  errors: [Error]
+}
+
+type CreateUpdateLeadSourceTypesResponse {
+  successful: Boolean
+  message: String
+  leadSourceType: LeadSourceType
+  errors: [Error]
+}
+
+type CreateUpdateLeadSourcesResponse {
+  successful: Boolean
+  message: String
+  leadSource: LeadSourceResponse
+  errors: [Error]
+}
+
+type CustChangeBillList {
+  commClass: String
+  optInRequired: Boolean
+  optIn: Boolean
+  optOut: Boolean
+}
+
+type CustChangeLocationList {
+  commClass: String
+  optInRequired: Boolean
+  optIn: Boolean
+  optOut: Boolean
+}
+
+type CustomInvoiceQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  customInvoice: InvoiceCustomDtoResponse
+}
+
+type CustomerAccount {
+  serviceAccountId: Long
+  customer: CustomerResponse
+  primaryBillingAddress: ArBillingAccountGen2Response
+  billingAccountOutput: BillingAccountOutput
+  primaryBillingCustomerId: Long
+}
+
+input CustomerCommunicationPreferenceRequest {
+  arBillingCustomerId: ID
+  emailNotification: Boolean
+  smsNotification: Boolean
+  widgetId: ID
+  jobId: ID
+}
+
+type CustomerContentResponse {
+  locationDto: [locationDtoObj]
+  agreementDto: agreementDtoObj
+  customerDetailDto: customerDetailDtoObj
+  serviceAccountId: Long
+}
+
+input CustomerInput {
+  # First Name is mandatory if commercial field value is false else optional.
+  firstName: String = ""
+
+  # Last Name is mandatory if commercial field value is false else optional.
+  lastName: String = ""
+
+  # Company Name is mandatory if commercial field value is true else optional.
+  companyName: String
+  phoneNumber: String!
+  extension: String
+
+  # This is mandatory if noEmail field value is false else optional.
+  email: String
+  title: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  altFirstName: String = ""
+  altLastName: String = ""
+  referral: String
+
+  # If this is true then email is optional else email is mandatory and service will throw error.
+  noEmail: Boolean!
+  commercial: Boolean
+  alternameNameInAddress: Boolean
+  alternateTitle: String
+  phone1Ext: String
+  phone2: String
+  phone2Ext: String
+  phone3: String
+  phone3Ext: String
+  phone4: String
+  phone4Ext: String
+  sourceType: String
+  leadSource: String
+  dnis: String
+}
+
+type CustomerResponse {
+  id: Long
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  extension: String
+  email: String
+  title: String
+  leadSource: String
+  sourceType: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  altFirstName: String
+  altLastName: String
+  referral: String
+  noEmail: Boolean
+  alternameNameInAddress: Boolean
+  alternateTitle: String
+  phone1Ext: String
+  phone2: String
+  phone2Ext: String
+  phone3: String
+  phone3Ext: String
+  phone4: String
+  phone4Ext: String
+  legacyLocationId: Int
+  leadSourceDescription: String
+  commercial: Boolean
+  companyName: String
+  dnis: String
+}
+
+type CustomerTitle {
+  id: Long
+  title: String
+  legacyCustomerTitleId: String
+}
+
+type CustomerTitleQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  customerTitles: [CustomerTitle]
+}
+
+# Custom scalar for java.util.Date
+scalar Date
+
+type DepartmentDto {
+  id: Long
+  departmentName: String
+}
+
+input DepartmentInput {
+  id: Long
+  departmentName: String
+}
+
+type DepartmentOutput {
+  id: Long
+
+  # departmentName was primary key in legacy application so will be used as legacy id.
+  departmentName: String
+  departmentDescription: String
+  callsPerDay: Int
+  slotsPerDay: Int
+  active: Boolean
+}
+
+input DepartmentRequest {
+  id: Long
+  departmentName: String!
+  departmentDescription: String!
+  callsPerDay: Int
+  slotsPerDay: Int
+  active: Boolean
+}
+
+type DepartmentResponse {
+  id: Long
+
+  # departmentName was primary key in legacy application so will be used as legacy id.
+  departmentName: String
+  description: String
+  active: Boolean
+}
+
+type EmployeeQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  employees: [EmployeeResponse]
+}
+
+type EmployeeResponse {
+  id: Long
+
+  # employeeCode was primary key in legacy application so will be used as legacy id.
+  employeeCode: String
+  firstName: String
+  lastName: String
+  middleInitial: String
+  isSalesperson: Boolean
+  isTechnician: Boolean
+  isSubcontracted: Boolean
+  defaultDepartment: String
+  jobTitle: String
+  employeeType: String
+  email: String
+  phone: String
+  pagerEmail: String
+  cellPhone: String
+  legacyEmployeeType: String
+  legacyApVendorId: String
+}
+
+type Equipment {
+  id: Long
+  unitType: String
+  unitTypeDescription: String
+  unitSize: String
+  circuitPanel: Boolean
+  equipmentSystem: String
+  manufacturer: String
+  manufacturerDescription: String
+  other: String
+  serialNo: String
+  modelNo: String
+  filterCount: String
+  filterSize: String
+  conditionNotes: String
+  condition: String
+  evaluatedBy: String
+  evaluationDate: String
+  location: String
+  installedByUs: Boolean
+  installedBy: String
+  installedDate: String
+  soldBy: String
+  age: Int
+  warrantyStatus: String
+  warranties: [Warranty]
+  outOfService: Boolean
+  installCallId: Long
+  installedDateLocal: String
+}
+
+type EquipmentDto {
+  unitType: String
+  location: String
+}
+
+type EquipmentResponse {
+  id: Long
+
+  # unitType was primary key in legacy application so will be used as legacy id.
+  unitType: String
+  unitTypeDescription: String
+  circuitPanel: Boolean
+  active: Boolean
+}
+
+type Error {
+  path: String
+  errorMessage: String
+}
+
+type GroupJobClassOutput {
+  id: Long
+  jobClass: String
+  jobType: String
+  jobTypeDescription: String
+}
+
+type GroupTimeSlotOutput {
+  id: Long
+  groupJobClasses: [GroupJobClassOutput]
+}
+
+type IntegrationInvoiceItemResponse {
+  invoiceId: Long
+  itemNumber: String
+  quantity: BigDecimal
+  unitPrice: BigDecimal
+  totalSale: BigDecimal
+  discountAmount: BigDecimal
+  totalAfterDiscount: BigDecimal
+  chargeTo: String
+  saleTypeResponse: SaleTypeDto
+}
+
+type IntegrationObjectResponse {
+  invoiceDate: String
+  arBillingCustomerId: Long
+  locationId: Long
+  invoiceNumber: String
+  jobNumber: String
+  jobClass: String
+  jobType: String
+  leadSourceDescription: String
+  leadSourceType: String
+  jobDepartment: String
+  invoiceDepartment: String
+  subTotal: BigDecimal
+  totalAmount: BigDecimal
+  netBalance: BigDecimal
+  saleEst: Boolean
+  invoiceItemResponseList: [IntegrationInvoiceItemResponse]
+  id: Long
+  serviceAccountId: Long
+  invoiceDateLocal: String
+}
+
+type Invoice {
+  id: Long
+  number: String
+  totalAmount: Float
+  workCompletedNotes: String
+  workSuggestedNotes: String
+  payments: [Payment]
+}
+
+type InvoiceAgreementDto {
+  id: Long
+  agreementNumber: String
+  renewedFromId: Long
+  agreementTypeName: String
+  year: Int
+  startDate: String
+  totalPrice: BigDecimal
+  deposit: BigDecimal
+  invoiced: Boolean
+  billStartDate: String
+  methodOfPayment: String
+  paymentType: String
+  XCAlias: Boolean
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  creditCardNumber: String
+  creditCardName: String
+  agreementEquipmentDtoList: [AgreementEquipmentDto]
+  startDateLocal: String
+  billStartDateLocal: String
+}
+
+type InvoiceCustomDtoResponse {
+  id: Long
+  invoiceNumber: String
+  discountTypeName: String
+  discountPercent: BigDecimal
+  discountAmount: BigDecimal
+  totalAmount: BigDecimal
+  taxableAmount: BigDecimal
+  taxCodeName: String
+  taxPercent: BigDecimal
+  taxIncludedAmount: BigDecimal
+  taxIncluded: BigDecimal
+  taxAmountDue: BigDecimal
+  taxAmount: BigDecimal
+  subTotalWarranty: BigDecimal
+  subTotalAgreement: BigDecimal
+  subTotal: BigDecimal
+  subAfterDiscount: BigDecimal
+  netBalance: BigDecimal
+  currentBalance: BigDecimal
+  manualTax: Boolean
+  lessAmount: BigDecimal
+  depositAmount: BigDecimal
+  paymentAmount: BigDecimal
+  updatedBy: String
+  signatureWorkAuth: String
+  signatureWorkApplication: String
+  signaturePayment: String
+  hasInvoiceDiscount: Boolean
+  autoDetail: Int
+  readyToPost: Boolean
+  updatedAt: String
+  departmentName: String
+  invoiceItemType: String
+  jobId: Long
+  locationId: Long
+  arBillingCustomerId: Long
+  invoiceItemCustomDtos: [InvoiceItemCustomDto]
+  invoiceMemoDtos: [InvoiceMemoDto]
+  invoiceDepositDtos: [InvoiceDepositDto]
+  updatedAtLocal: String
+}
+
+type InvoiceDepositDto {
+  depositReceivableId: Long
+  depositBalanceAvailable: BigDecimal
+  depositAmount: BigDecimal
+}
+
+type InvoiceItemCustomDto {
+  id: Long
+  invoiceId: Long
+  saleType: SaleTypeDto
+  department: DepartmentDto
+  itemNumber: String
+  itemType: String
+  itemAsTask: Boolean
+  description: String
+  quantity: BigDecimal
+  priceLevel: String
+  unitPrice: BigDecimal
+  totalSale: BigDecimal
+  includeTax: Boolean
+  discountable: Boolean
+  addTax: Boolean
+  chargeTo: String
+  agreementId: Long
+  gen2WarrantyId: Long
+  reportedHours: BigDecimal
+  diagItem: Boolean
+  extraItem: Boolean
+  partSale: BigDecimal
+  laborSale: BigDecimal
+  miscellaneousSale: BigDecimal
+  taxIncludedDiscount: BigDecimal
+  taxableDiscount: BigDecimal
+  discountAmount: BigDecimal
+  totalAfterDiscount: BigDecimal
+  invoiceItemDetails: [InvoiceItemDetailDto]
+  visits: [InvoiceVisitDto]
+  invoiceAgreementDto: InvoiceAgreementDto
+  itemEquipmentDetailDtos: [ItemEquipmentDetailDto]
+}
+
+type InvoiceItemDetailDto {
+  id: Long
+  invoiceItemId: Long
+  itemNumber: String
+  description: String
+  detailType: String
+  quantity: BigDecimal
+  serialNumber: String
+  serialized: Boolean
+  unitCost: BigDecimal
+  totalCost: BigDecimal
+  markup: BigDecimal
+  unitPrice: BigDecimal
+  totalPrice: BigDecimal
+  unitOfMeasure: String
+}
+
+type InvoiceMemoDto {
+  invoiceId: Long
+  workSuggested: String
+}
+
+type InvoiceVisitDto {
+  id: Long
+  type: String
+  visitPrice: BigDecimal
+  invoiceId: Long
+  invoiceItemId: Long
+}
+
+type ItemEquipmentDetailDto {
+  invoiceItemId: Long
+  locationUnitId: Long
+  invoiceId: Long
+  equipment: EquipmentDto
+}
+
+type Job {
+  id: Long
+  number: Long
+  jobClass: String
+  jobType: String
+  campaign: Campaign
+  happyCheckRate: String
+  happyCheckNotes: String
+  scheduledFor: String
+  departmentName: String
+  invoice: Invoice
+  locationId: Long
+  startDate: String
+  endDate: String
+  happyCheckDate: String
+  happyCheckOk: Boolean
+  noHappyCheck: Boolean
+  lastCallCompleted: String
+}
+
+type JobAndCall {
+  id: Long
+  code: String
+  description: String
+  jobClass: String
+  department: String
+  legacyJobClassCode: String
+  legacyPricebookItemId: String
+  legacyFlatRateId: String
+  active: Boolean
+}
+
+type JobAndCallQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  jobAndCalls: [JobAndCall]
+}
+
+type JobClass {
+  jobClassId: Long
+  code: String
+  active: Boolean
+  saleEst: Boolean
+  jobTypes: [JobType]
+}
+
+type JobClassJobTypeQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  jobClasses: [JobClass]
+}
+
+type JobClassQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  jobClasses: [JobClassResponse]
+}
+
+type JobClassResponse {
+  id: Long
+
+  # jobClass was primary key in legacy application so will be used as legacy id.
+  jobClass: String
+  isSalesEst: Boolean
+  active: Boolean
+}
+
+input JobClassesRequest {
+  id: Long
+
+  # The length of Job Class Code must be between 1 and 15 characters.
+  # Job Class Code may contain only letters, numbers, dashes '-', slashes '/',
+  # spaces, parenthesis '()', periods '.', and/or ampersands '&'.
+  jobClass: String!
+  active: Boolean
+  isSalesEst: Boolean
+}
+
+type JobDto {
+  id: Long
+  jobClass: String
+  jobType: String
+  notes: String
+  timePreference: String
+  serviceAccountId: Long
+  deleted: Boolean
+  status: String
+  estimatedDuration: Int
+  number: String
+  jobTypeDescription: String
+  reviewedAt: Date
+  canceledAt: Date
+  canceledNotes: String
+  reopenedAt: Date
+  multipleAssignments: Boolean
+  assignmentsCompleted: Boolean
+  leadSourceType: String
+  campaignId: Long
+  opportunityId: Long
+  category: String
+  departmentId: Long
+}
+
+type JobHistory {
+  id: Long
+  number: String
+  jobClass: String
+  jobType: String
+  jobTypeDescription: String
+  status: String
+  assignments: [AssignmentInJobHistory]
+  invoiceBalance: Float
+  isPaymentSigned: Boolean
+  multipleAssignments: Boolean
+  estimatedDuration: String
+  callbackJobNumber: String
+  visits: [Visit]
+  category: String
+  priority: Boolean
+  invoice: gen2SearchInvoiceResponse
+  notes: String
+  primaryEmployeeCode: String
+  claimNo: String
+  scheduledFor: String
+  startDate: String
+  endDate: String
+  department: DepartmentResponse
+}
+
+type JobHistoryResponse {
+  id: Long
+  number: String
+  jobClass: String
+  jobType: String
+  jobTypeDescription: String
+  notes: String
+  status: String
+  serviceAccountId: Long
+  department: String
+  primaryEmployeeCode: String
+  callbackJobNumber: String
+  invoices: gen2SearchInvoiceResponse
+}
+
+type JobType {
+  id: Long
+  code: String
+  description: String
+  estimatedDuration: String
+  active: Boolean
+  department: DepartmentResponse
+}
+
+input JobTypeRequest {
+  id: Long
+
+  # The length of Job Type Code must be between 1 and 6 characters.Job Type Code may contain only
+  # letters, numbers,dashes '-', slashes '/', spaces, parenthesis '()', periods '.', and/or ampersands '&'.
+  code: String!
+
+  # The length of Job Type Description must be between 1 and 30 characters.
+  description: String!
+  jobClass: String!
+  department: String
+  estimatedDuration: String
+  estimatedDays: String
+  estimatedDayHours: String
+  estimatedDayManHours: String
+  isPermitRequired: Boolean
+  active: Boolean
+}
+
+type JobTypeResponse {
+  id: Long
+  code: String
+  description: String
+  estimatedDuration: String
+  department: DepartmentResponse
+  jobClass: jobClassResponse
+  active: Boolean
+}
+
+type JobVisitResponse {
+  id: Long
+  agreementId: Long
+  visitScheduleId: Long
+  serviceAccountId: Long
+  type: String
+  scheduleDate: String
+  status: String
+  notes: String
+  jobId: Long
+  zoneId: Long
+  scheduleDateLocal: String
+  activationDate: String
+  activationDateLocal: String
+}
+
+type LeadSource {
+  id: Long
+  code: String
+  type: String
+  description: String
+  isActive: Boolean
+}
+
+type LeadSourceQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  leadSources: [LeadSourceResponse]
+}
+
+input LeadSourceRequest {
+  id: Long
+
+  # The length of Lead Source code must be between 1 and 6 characters.
+  code: String!
+  type: String!
+
+  # The length of Lead Source description must be between 1 and 30 characters.
+  description: String
+  isActive: Boolean
+  dnis: String
+}
+
+type LeadSourceResponse {
+  id: Long
+  code: String
+  type: String
+  dnis: String
+  description: String
+  isActive: Boolean
+  legacyLeadSourceId: String
+  legacyLeadSourceTypeId: String
+}
+
+type LeadSourceType {
+  id: Long
+  code: String
+  isActive: Boolean
+}
+
+type LeadSourceTypeQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  leadSourceTypes: [LeadSourceTypeResponse]
+}
+
+input LeadSourceTypeRequest {
+  id: Long
+
+  # The length of Lead source type code must be between 1 and 16 characters.
+  code: String!
+  isActive: Boolean
+}
+
+type LeadSourceTypeResponse {
+  id: Long
+  code: String
+  isActive: Boolean
+  leadSource: [LeadSourceResponse]
+  legacyLeadSourceTypeId: String
+}
+
+type LocationCommunicationPreferenceResponse {
+  locationId: Long
+  id: Long
+  communicationClass: CommunicationClassResponse
+  optOut: Boolean
+  optIn: Boolean
+  serviceAccountId: Long
+}
+
+type LocationDetails {
+  serviceLocation: LocationResponse
+  jobDetail: [searchJobResponse]
+  history: [JobHistoryResponse]
+  agreement: genRockAgreementResponse
+  equipments: [Equipment]
+  communicationPreference: [LocationCommunicationPreferenceResponse]
+}
+
+type LocationInfo {
+  id: Long
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  type: String
+  companyName: String
+  lotId: String
+  subdivision: String
+  directionNote: String
+  ownerOccupied: Boolean
+  taxCode: String
+  invoiceDetailLevel: String
+  isCounterSale: Boolean
+  isPrintLabor: Boolean
+  isPrintMisc: Boolean
+  isPrintParts: Boolean
+  latitude: Float
+  longitude: Float
+  isApproxLatLong: Boolean
+  priority: Boolean
+  lastAgreeDate: String
+  lastAgreeType: String
+  lastAgreeTypeDesc: String
+  lastWarrantyDate: String
+  activeAgreementId: Long
+  legacyLocationId: Int
+  legacyLotId: Int
+  notes: String
+  previousOwner: String
+  contact: String
+  contractArBillingCustomerId: Long
+  contractComment: String
+  contractNo: String
+  serviceType: String
+  sizeOfService: Int
+  zone: String
+  mapCode: String
+  preferredTech: String
+  phaseSpec: String
+  hasActiveAgreement: Boolean
+  hasInstalledEq: Boolean
+  hasActiveWarranty: Boolean
+  activeJobCount: Long
+  openMarketingCount: Long
+  customerAccounts: [CustomerAccount]
+  jobDetails: [searchJobResponse]
+  jobHistory: [JobHistory]
+  equipments: [Equipment]
+  communicationPreference: [LocationCommunicationPreferenceResponse]
+  agreements: [AgreementOutput]
+  billingAgreements: [gen2AgreementResponse]
+}
+
+input LocationInput {
+  # This should be null if new location needs to be created
+  # else existing location with particular id will get linked
+  id: Long
+
+  # Type is plain text and it's location type description.
+  type: String!
+
+  # Company name is plain text and it's mandatory if type is commercial.
+  companyName: String
+  address1: String
+  address2: String
+  city: String
+  state: String!
+  zipCode: String
+  lotId: String
+  subdivision: String
+
+  # This is plain text and it's Gen1 notes.
+  directionNote: String
+  ownerOccupied: Boolean = false
+  latitude: Float
+  longitude: Float
+  notes: String
+  previousOwner: String
+  contact: String
+  contractArBillingCustomerId: Long
+  contractComment: String
+  contractNo: String
+  priority: Boolean
+  serviceType: String
+  sizeOfService: Int
+  zone: String
+  mapCode: String
+  preferredTech: String
+  phaseSpec: String
+}
+
+type LocationOutput {
+  successful: Boolean
+  message: String
+  locationInfo: LocationInfo
+  errors: [Error]
+}
+
+type LocationQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  location: LocationResponse
+}
+
+type LocationResponse {
+  id: Long
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  type: String
+  companyName: String
+  lotId: String
+  subdivision: String
+  directionNote: String
+  ownerOccupied: Boolean
+  taxCode: String
+  invoiceDetailLevel: String
+  isCounterSale: Boolean
+  isPrintLabor: Boolean
+  isPrintMisc: Boolean
+  isPrintParts: Boolean
+  isApproxLatLong: Boolean
+  latitude: Float
+  longitude: Float
+  legacyLocationId: Int
+  legacyLotId: Int
+  notes: String
+  previousOwner: String
+  contact: String
+  contractArBillingCustomerId: Long
+  contractComment: String
+  contractNo: String
+  priority: Boolean
+  serviceType: String
+  sizeOfService: Int
+  zone: String
+  mapCode: String
+  preferredTech: String
+  phaseSpec: String
+}
+
+type LocationUnitDto {
+  id: Long
+  unitType: String
+  location: String
+}
+
+type Locations {
+  id: Long
+  locationTypes: String
+  active: Boolean
+  locationTypeDescription: String
+  legacyLocationTypeId: String
+}
+
+# A 64-bit signed integer
+scalar Long
+
+type Mutation {
+  scheduleJob(input: ScheduleJobInput!): ScheduleJobOutput
+  bookitCreateServiceAccount(
+    input: BookitCreateServiceAccountRequest!
+  ): BookitCreateServiceAccountResponseData
+  bookitCreateServiceLocation(
+    input: BookitCreateServiceLocationRequest!
+  ): BookitLocationResponseData
+  bookitUpdateServiceLocation(
+    input: BookitUpdateServiceLocationRequest!
+  ): BookitBaseOutputData
+  bookitUpdateServiceAccount(
+    input: BookitUpdateServiceAccountRequest!
+  ): BookitBaseOutputData
+  generateOTP(input: BookitOTPRequest!): OTPResponseData
+  verifyOTP(input: VerifyOTPRequest!): VerifyOTPResponseData
+  bookitCreateCall(input: BookitCallRequest!): BookitCallResponseData
+  bookitUpdateCall(input: BookitCallRequest!): BookitCallResponseData
+  bookitCancelJob(input: BookitCancelJobRequest!): BookitBaseOutputData
+  bookitRescheduleJob(
+    input: BookitUpdateAssignmentRequest!
+  ): BookitBaseOutputData
+  bookitUpdateCommunicationPreference(
+    input: CustomerCommunicationPreferenceRequest
+  ): BookitBaseOutputData
+  bookitCreateJob(input: BookitCreateJobRequest): BookitCreateJobResponseData
+  bookitSendSMSNotification(
+    input: SMSNotificationRequest
+  ): BookitSendSMSNotificationResponseData
+  bookitDeleteAttachment(id: Long!): BookitBaseOutputData
+  bookitCreateAttachment(
+    input: BookitCreateAttachmentRequest
+  ): BookitCreateAttachmentResponseData
+
+  # mutation {
+  #   createArBillingAccount(
+  #     id: "49697465745679314"
+  #     input: {
+  #       serviceAccount: {
+  #         id: "369430530842072970"
+  #         customer: {
+  #           id: 369430111545685898
+  #           firstName: "Peter"
+  #           lastName: "Parker3"
+  #           phoneNumber: "3232331212"
+  #           extension: "91"
+  #           email: "3232@qq.com"
+  #           title: "Mr"
+  #           sourceType: "Other"
+  #         }
+  #       }
+  #       arBillingCustomerAccount: {
+  #         active: true
+  #         balanceDue: 97.37
+  #         checkBankAccountNumber: "12346"
+  #         counterSale: false
+  #         creditCardExpireMonth: 12
+  #         creditCardExpireYear: null
+  #         creditCardName: "435435342434"
+  #         creditCardNumber: "3534534534532"
+  #         creditLimit: 20000
+  #         doNotSolicit: false
+  #         financeCharge: true
+  #         general: true
+  #         happyChecks: false
+  #         serviceContact: "642322"
+  #         statement: false
+  #         taxExemptNumber: "12345"
+  #         xchargeAlias: "TEST"
+  #         xchargeClean: true
+  #       }
+  #     }
+  #   ) {
+  #     successful
+  #     message
+  #     billingCustomer {
+  #       id
+  #       billingCustomerId
+  #       apContact
+  #       serviceContact
+  #       creditLimit
+  #       customerRating {
+  #         id
+  #         customerRatingName
+  #       }
+  #       balanceDue
+  #       paymentMethod {
+  #         id
+  #         paymentMethodName
+  #         paymentType {
+  #           id
+  #           paymentTypeName
+  #         }
+  #       }
+  #       badRiskCustomer
+  #       doNotSolicit
+  #       happyChecks
+  #       creditCardNumber
+  #       creditCardName
+  #       creditCardExpireMonth
+  #       creditCardExpireYear
+  #       financeCharge
+  #       active
+  #       general
+  #       taxExemptNumber
+  #       counterSale
+  #       xchargeAlias
+  #       xchargeClean
+  #       checkBankAccountNumber
+  #       salesPersonId
+  #       serviceAccountId
+  #       statement
+  #       paymentTerms {
+  #         id
+  #         termsCode
+  #         termsDescription
+  #       }
+  #       currentBalance
+  #       over30Balance
+  #       over60Balance
+  #       over90Balance
+  #       openCount
+  #       retainedBalance
+  #       noStatement
+  #       lastAgeDate
+  #       createdBy
+  #       createdAt
+  #       financeChargeAmount
+  #       noFinanceCharge
+  #       lastFinanceDate
+  #       arBillingLocationId
+  #       arAlternateLocationId
+  #       totalInvoiceAmount
+  #       totalAdjustAmount
+  #       totalRefundAmount
+  #       totalPaidAmount
+  #       title
+  #       firstName
+  #       lastName
+  #       alternateFirstName
+  #       alternateLastName
+  #       comments
+  #       companyName
+  #       cellPhone
+  #       customerChangeUtcdt
+  #       customerTitle2
+  #       faxPhone
+  #       noEmail
+  #       primaryAddress
+  #       phoneNumber
+  #       phoneNumber2
+  #       phoneNumber3
+  #       phoneNumber4
+  #       email
+  #       name2InAddress
+  #       alternateTitle
+  #       phoneExtension
+  #       phone2Extension
+  #       phone3Extension
+  #       phone4Extension
+  #       arAlternateAddress {
+  #         id
+  #         arBillingCustomerId
+  #         alternateAddress1
+  #         alternateAddress2
+  #         alternateApContact
+  #         alternateCity
+  #         alternatePhone
+  #         alternatePhoneExtension
+  #         alternateState
+  #         alternateZip
+  #         notes
+  #       }
+  #       address1
+  #       address2
+  #       city
+  #       state
+  #       zipCode
+  #     }
+  #   }
+  # }
+  createArBillingAccount(
+    id: String!
+    input: genrockUpdateServiceAccountArBillingCustomerRequest
+  ): BillingCustomerOutput
+
+  # mutation {
+  #   createBillingAccount(
+  #     input: {
+  #       active: true
+  #       balanceDue: 97.37
+  #       checkBankAccountNumber: "12346"
+  #       counterSale: false
+  #       creditCardExpireMonth: 12
+  #       creditCardExpireYear: null
+  #       creditCardName: "435435342434"
+  #       creditCardNumber: "3534534534532"
+  #       creditLimit: 20000
+  #       doNotSolicit: false
+  #       financeCharge: true
+  #       general: true
+  #       happyChecks: false
+  #       serviceContact: "642322"
+  #       statement: false
+  #       taxExemptNumber: "12345"
+  #       xchargeAlias: "TEST"
+  #       xchargeClean: true
+  #     }
+  #   ) {
+  #     successful
+  #     message
+  #     billingCustomer {
+  #       id
+  #       billingCustomerId
+  #       apContact
+  #       serviceContact
+  #       creditLimit
+  #       customerRating {
+  #         id
+  #         customerRatingName
+  #       }
+  #       balanceDue
+  #       paymentMethod {
+  #         id
+  #         paymentMethodName
+  #         paymentType {
+  #           id
+  #           paymentTypeName
+  #         }
+  #       }
+  #       badRiskCustomer
+  #       doNotSolicit
+  #       happyChecks
+  #       creditCardNumber
+  #       creditCardName
+  #       creditCardExpireMonth
+  #       creditCardExpireYear
+  #       financeCharge
+  #       active
+  #       general
+  #       taxExemptNumber
+  #       counterSale
+  #       xchargeAlias
+  #       xchargeClean
+  #       checkBankAccountNumber
+  #       salesPersonId
+  #       serviceAccountId
+  #       statement
+  #       paymentTerms {
+  #         id
+  #         termsCode
+  #         termsDescription
+  #       }
+  #       currentBalance
+  #       over30Balance
+  #       over60Balance
+  #       over90Balance
+  #       openCount
+  #       retainedBalance
+  #       noStatement
+  #       lastAgeDate
+  #       createdBy
+  #       createdAt
+  #       financeChargeAmount
+  #       noFinanceCharge
+  #       lastFinanceDate
+  #       arBillingLocationId
+  #       arAlternateLocationId
+  #       totalInvoiceAmount
+  #       totalAdjustAmount
+  #       totalRefundAmount
+  #       totalPaidAmount
+  #       title
+  #       firstName
+  #       lastName
+  #       alternateFirstName
+  #       alternateLastName
+  #       comments
+  #       companyName
+  #       cellPhone
+  #       customerChangeUtcdt
+  #       customerTitle2
+  #       faxPhone
+  #       noEmail
+  #       primaryAddress
+  #       phoneNumber
+  #       phoneNumber2
+  #       phoneNumber3
+  #       phoneNumber4
+  #       email
+  #       name2InAddress
+  #       alternateTitle
+  #       phoneExtension
+  #       phone2Extension
+  #       phone3Extension
+  #       phone4Extension
+  #       arAlternateAddress {
+  #         id
+  #         arBillingCustomerId
+  #         alternateAddress1
+  #         alternateAddress2
+  #         alternateApContact
+  #         alternateCity
+  #         alternatePhone
+  #         alternatePhoneExtension
+  #         alternateState
+  #         alternateZip
+  #         notes
+  #       }
+  #       address1
+  #       address2
+  #       city
+  #       state
+  #       zipCode
+  #     }
+  #   }
+  # }
+  createBillingAccount(input: arBillingCustomerRequest!): BillingCustomerOutput
+
+  # mutation {
+  #   updateBillingAccount(
+  #     input: {
+  #       active: true
+  #       balanceDue: 97.37
+  #       checkBankAccountNumber: "12346"
+  #       counterSale: false
+  #       creditCardExpireMonth: 12
+  #       creditCardExpireYear: null
+  #       creditCardName: "435435342434"
+  #       creditCardNumber: "3534534534532"
+  #       creditLimit: 20000
+  #       doNotSolicit: false
+  #       financeCharge: true
+  #       general: true
+  #       happyChecks: false
+  #       id: 100000026455
+  #       billingCustomerId: "100000026455"
+  #       serviceContact: "642322"
+  #       statement: false
+  #       taxExemptNumber: "12345"
+  #       xchargeAlias: "TEST"
+  #       xchargeClean: true
+  #     }
+  #   ) {
+  #     successful
+  #     message
+  #     billingCustomer {
+  #       id
+  #       billingCustomerId
+  #       apContact
+  #       serviceContact
+  #       creditLimit
+  #       customerRating {
+  #         id
+  #         customerRatingName
+  #       }
+  #       balanceDue
+  #       paymentMethod {
+  #         id
+  #         paymentMethodName
+  #         paymentType {
+  #           id
+  #           paymentTypeName
+  #         }
+  #       }
+  #       badRiskCustomer
+  #       doNotSolicit
+  #       happyChecks
+  #       creditCardNumber
+  #       creditCardName
+  #       creditCardExpireMonth
+  #       creditCardExpireYear
+  #       financeCharge
+  #       active
+  #       general
+  #       taxExemptNumber
+  #       counterSale
+  #       xchargeAlias
+  #       xchargeClean
+  #       checkBankAccountNumber
+  #       salesPersonId
+  #       serviceAccountId
+  #       statement
+  #       paymentTerms {
+  #         id
+  #         termsCode
+  #         termsDescription
+  #       }
+  #       currentBalance
+  #       over30Balance
+  #       over60Balance
+  #       over90Balance
+  #       openCount
+  #       retainedBalance
+  #       noStatement
+  #       lastAgeDate
+  #       createdBy
+  #       createdAt
+  #       financeChargeAmount
+  #       noFinanceCharge
+  #       lastFinanceDate
+  #       arBillingLocationId
+  #       arAlternateLocationId
+  #       totalInvoiceAmount
+  #       totalAdjustAmount
+  #       totalRefundAmount
+  #       totalPaidAmount
+  #       title
+  #       firstName
+  #       lastName
+  #       alternateFirstName
+  #       alternateLastName
+  #       comments
+  #       companyName
+  #       cellPhone
+  #       customerChangeUtcdt
+  #       customerTitle2
+  #       faxPhone
+  #       noEmail
+  #       primaryAddress
+  #       phoneNumber
+  #       phoneNumber2
+  #       phoneNumber3
+  #       phoneNumber4
+  #       email
+  #       name2InAddress
+  #       alternateTitle
+  #       phoneExtension
+  #       phone2Extension
+  #       phone3Extension
+  #       phone4Extension
+  #       arAlternateAddress {
+  #         id
+  #         arBillingCustomerId
+  #         alternateAddress1
+  #         alternateAddress2
+  #         alternateApContact
+  #         alternateCity
+  #         alternatePhone
+  #         alternatePhoneExtension
+  #         alternateState
+  #         alternateZip
+  #         notes
+  #       }
+  #       address1
+  #       address2
+  #       city
+  #       state
+  #       zipCode
+  #     }
+  #   }
+  # }
+  updateBillingAccount(
+    input: arBillingCustomerUpdateRequest!
+  ): BillingCustomerOutput
+
+  # {
+  # "input": {
+  # "defaultWarehouseId": null,
+  # "defaultWarehouseNumber": null,
+  # "notes": null,
+  # "id": "100000052433",
+  # "invoiceNumberNumeric": 200000043156,
+  # "invoiceNumber": "200000043156",
+  # "invoiceType": {
+  # "invoiceTypeName": "Job",
+  # "id": "2000000000"
+  # },
+  # "invoiceDate": "2024-02-27T00:00:00Z",
+  # "totalAmount": 1700,
+  # "dueDate": "2024-02-27T00:00:00Z",
+  # "printDate": null,
+  # "printBatch": null,
+  # "invoiceKind": "INV",
+  # "balance": 0,
+  # "paymentAmount": null,
+  # "customerPoNumber": null,
+  # "posted": false,
+  # "adjusted": false,
+  # "adjusting": false,
+  # "canceled": false,
+  # "printInBatch": false,
+  # "saleEst": false,
+  # "verified": false,
+  # "readyToPost": false,
+  # "creditMemo": false,
+  # "locked": false,
+  # "invoiceNoPrefix": null,
+  # "invoiceDetailLevel": null,
+  # "invoiceItemType": "Q",
+  # "stateCode": null,
+  # "lPrintP": false,
+  # "lPrintL": false,
+  # "lPrintM": false,
+  # "printTaskNotes": false,
+  # "totalCost": 212.68,
+  # "subTotal": 1700,
+  # "netBalance": 1700,
+  # "taxPercent": null,
+  # "taxAmount": 0,
+  # "taxableAmount": 0,
+  # "nonTaxableAmount": 1000,
+  # "taxAmountDue": 0,
+  # "taxIncluded": 0,
+  # "taxIncludedAmount": 700,
+  # "lessAmount": 0,
+  # "depositAmount": null,
+  # "discountAmount": 0,
+  # "partSale": 9.08,
+  # "laborSale": 1054.52,
+  # "miscSale": 636.4,
+  # "subAfterDiscount": 1700,
+  # "totalStdHours": null,
+  # "statePercent": null,
+  # "stateCap": null,
+  # "stateTaxableAmount": null,
+  # "stateNonTaxableAmount": null,
+  # "discountPercent": null,
+  # "onParts": false,
+  # "onLabor": false,
+  # "onMisc": false,
+  # "hasInvoiceDiscount": false,
+  # "partsTaxable": false,
+  # "laborTaxable": false,
+  # "miscTaxable": false,
+  # "manualTax": false,
+  # "printInvoice": false,
+  # "postDate": null,
+  # "paymentDate": null,
+  # "discountTypeId": null,
+  # "taxCodeId": null,
+  # "locationId": "533693693434118030",
+  # "jobId": "560076864442367956",
+  # "paymentMethodId": null,
+  # "paymentTermsId": null,
+  # "paymentTypeId": null,
+  # "salesPersonId": null,
+  # "invoiceItemCount": null,
+  # "diagItemCount": null,
+  # "moneyItemCount": null,
+  # "extraItemCount": null,
+  # "agreeNewCount": null,
+  # "agreeRenewCount": null,
+  # "chargeWCount": null,
+  # "chargeACount": null,
+  # "alt1Code": null,
+  # "alt1Percent": null,
+  # "alt1Cap": null,
+  # "alt1TaxableAmount": null,
+  # "alt1NonTaxableAmount": null,
+  # "alt2Code": null,
+  # "alt2Percent": null,
+  # "alt2Cap": null,
+  # "alt2TaxableAmount": null,
+  # "alt2NonTaxableAmount": null,
+  # "department": {
+  # "id": "2000000010",
+  # "departmentName": "30"
+  # },
+  # "project": {
+  # "id": null,
+  # "projectNumber": null
+  # },
+  # "invoiceItem": [
+  # {
+  # "id": "100000068550",
+  # "invoiceId": "100000052433",
+  # "addTax": false,
+  # "itemNumber": "10951",
+  # "flatRateId": null,
+  # "quantity": 1,
+  # "description": "3/4 METER UNION",
+  # "itemType": "P",
+  # "department": {
+  # "id": "2000000010",
+  # "departmentName": "30"
+  # },
+  # "unitPrice": 500,
+  # "includeTax": true,
+  # "totalSale": 500,
+  # "discountable": false,
+  # "totalAfterDiscount": 500,
+  # "chargeTo": "R",
+  # "pricebookItemId": "2000002866",
+  # "itemAsTask": true,
+  # "diagItem": false,
+  # "moneyItem": false,
+  # "payBase": null,
+  # "extraItem": false,
+  # "chargeDate": "2024-02-27T00:00:00.000Z",
+  # "calculatePriceFromDetail": false,
+  # "deleteExistingDetails": false,
+  # "autoDetailCount": 2,
+  # "retainageBilled": 0,
+  # "useRetainageWithheld": false,
+  # "retainageWithheld": 0,
+  # "detailCount": 2,
+  # "saleType": {
+  # "saleTypeCode": "PARTS"
+  # },
+  # "gen2WarrantyId": null,
+  # "projectPhaseId": null,
+  # "paybaseDate": null,
+  # "paybasePayItem": null
+  # },
+  # {
+  # "id": "100000068546",
+  # "invoiceId": "100000052433",
+  # "addTax": false,
+  # "itemNumber": "10080",
+  # "flatRateId": null,
+  # "quantity": 1,
+  # "description": "3/4 X 1 CXC 90",
+  # "itemType": "P",
+  # "department": {
+  # "id": "2000000010",
+  # "departmentName": "30"
+  # },
+  # "unitPrice": 200,
+  # "includeTax": true,
+  # "totalSale": 200,
+  # "discountable": false,
+  # "totalAfterDiscount": 200,
+  # "chargeTo": "R",
+  # "pricebookItemId": "2000002854",
+  # "itemAsTask": true,
+  # "diagItem": false,
+  # "moneyItem": false,
+  # "payBase": null,
+  # "extraItem": false,
+  # "chargeDate": "2024-02-27T00:00:00.000Z",
+  # "calculatePriceFromDetail": false,
+  # "deleteExistingDetails": false,
+  # "autoDetailCount": 2,
+  # "retainageBilled": 0,
+  # "useRetainageWithheld": false,
+  # "retainageWithheld": 0,
+  # "detailCount": 2,
+  # "saleType": {
+  # "saleTypeCode": "PARTS"
+  # },
+  # "gen2WarrantyId": null,
+  # "projectPhaseId": null,
+  # "paybaseDate": null,
+  # "paybasePayItem": null
+  # },
+  # {
+  # "id": "100000068555",
+  # "invoiceId": "100000052433",
+  # "addTax": false,
+  # "itemNumber": "Item No",
+  # "flatRateId": null,
+  # "quantity": 1,
+  # "description": "Itme Description",
+  # "itemType": "L",
+  # "department": {
+  # "id": "2000000010",
+  # "departmentName": "30"
+  # },
+  # "unitPrice": 1000,
+  # "includeTax": false,
+  # "totalSale": 1000,
+  # "discountable": false,
+  # "totalAfterDiscount": 1000,
+  # "chargeTo": "R",
+  # "pricebookItemId": "100000007488",
+  # "itemAsTask": false,
+  # "diagItem": false,
+  # "moneyItem": false,
+  # "payBase": null,
+  # "extraItem": false,
+  # "chargeDate": "2024-02-27T00:00:00.000Z",
+  # "calculatePriceFromDetail": false,
+  # "deleteExistingDetails": false,
+  # "autoDetailCount": 1,
+  # "retainageBilled": 0,
+  # "useRetainageWithheld": false,
+  # "retainageWithheld": 0,
+  # "detailCount": 1,
+  # "saleType": {
+  # "saleTypeCode": "SERV"
+  # },
+  # "gen2WarrantyId": null,
+  # "projectPhaseId": null,
+  # "paybaseDate": null,
+  # "paybasePayItem": null
+  # }
+  # ],
+  #   "discountDepartmentId": null,
+  #   "taxableDiscountFlag": false,
+  #   "nonTaxableDiscountFlag": false,
+  #   "includeTaxDiscountFlag": false,
+  #   "serviceAccountId": "443657428035449082",
+  #   "achTransactionId": null,
+  #   "accNumberChanged": false,
+  #   "checkAccNumberChanged": false,
+  #   "retainByPercent": false,
+  #   "retainManual": false,
+  #   "retainageWithheld": null,
+  #   "retainageBilled": null,
+  #   "retainagePercent": null,
+  #   "retainageAmount": null,
+  #   "gen2InvoiceId": "561474378752304832",
+  #   "depositReceivableId": null,
+  #   "depositBalanceAvailable": null,
+  #   "projectId": null,
+  #   "changeOrderId": ""
+  #   }
+  # }
+  updateArInvoice(input: ArInvoiceInput!): ArInvoiceOutput
+
+  # {
+  #   "invoiceNumber": "200000042994",
+  #   "input": {
+  #   "projectPhaseId": "",
+  #   "id": "0",
+  #   "itemNumber": "12070-01",
+  #   "flatRateId": null,
+  #   "quantity": 1,
+  #   "description": "12070-01",
+  #   "itemType": "P",
+  #   "department": {
+  #   "id": "2000000001",
+  #   "departmentName": "00"
+  # },
+  #   "unitPrice": 50,
+  #   "includeTax": false,
+  #   "totalSale": 50,
+  #   "discountable": false,
+  #   "totalAfterDiscount": 50,
+  #   "chargeTo": "R",
+  #   "pricebookItemId": "100000007093",
+  #   "addTax": false,
+  #   "itemAsTask": false,
+  #   "diagItem": false,
+  #   "moneyItem": false,
+  #   "extraItem": false,
+  #   "chargeDate": "2024-02-21T00:00:00.000Z",
+  #   "saleType": {
+  #   "saleTypeCode": "AGRNEW"
+  # },
+  #   "calculatePriceFromDetail": false,
+  #   "deleteExistingDetails": false,
+  #   "useRetainageWithheld": false,
+  #   "glAccountMasterId": "2000000028",
+  #   "glSubAccountId": null
+  #   }
+  # }
+  updateArInvoiceItem(
+    invoiceNumber: String!
+    input: ArInvoiceItemInput!
+  ): ArInvoiceItemOutput
+  updateJobDetail(input: UpdateJobInput!): UpdateJobOutput
+  createJob(input: CreateJobInput!): CreateJobOutput
+  jobAdd(input: CreateJobCustomerInput!): CreateJobOutput
+  cancelJob(input: CancelJobInput!): CancelJobOutput
+  updateJobNotesById(
+    jobId: Long!
+    jobNotes: String
+    replaceNotes: Boolean = false
+  ): UpdateJobNotesOutput
+  createUpdateLeadSources(
+    input: LeadSourceRequest
+  ): CreateUpdateLeadSourcesResponse
+  createUpdateLeadSourceTypes(
+    input: LeadSourceTypeRequest
+  ): CreateUpdateLeadSourceTypesResponse
+  createUpdateJobClasses(
+    input: JobClassesRequest
+  ): CreateUpdateJobClassesResponse
+  createUpdateJobType(input: JobTypeRequest): CreateUpdateJobTypeResponse
+  createUpdateDepartment(
+    input: DepartmentRequest!
+  ): CreateUpdateDepartmentResponse
+
+  # This query creates service account with customer and service location.
+  # Billing account will get created and linked in background.
+  # Customer must be unique and an existing/new location can be linked/created to service account based on input.
+  # If location already exists in system then this query will raise error with existing location id.
+  # Same id can be used to link as a service location for service account or you can use
+  # searchServiceAccounts query to get existing location id.
+  # Sample request:
+  #
+  # mutation {
+  #   createServiceAccount(
+  #     input: {
+  #       customer: {
+  #         firstName: "nameTestaArinam"
+  #         lastName: "testLastName"
+  #         phoneNumber: "1234567770"
+  #         extension: null
+  #         email: "test@gmail.com"
+  #         title: "Mr"
+  #         leadSourceTypeId: 10100000002
+  #         leadSourceId: 10100000012
+  #         altFirstName: "ghoshTest"
+  #         altLastName: "helloTest"
+  #         referral: "no"
+  #         noEmail: false
+  #       }
+  #       location: {
+  #         id: "374429986188173138"
+  #         type: "Residential"
+  #         companyName: null
+  #         address1: "Jasper County1"
+  #         address2: "Jasper County"
+  #         city: "Jasper County"
+  #         state: "MA"
+  #         zipCode: "223003"
+  #         directionNote: " new customer arindam"
+  #         ownerOccupied: true
+  #       }
+  #     }
+  #   ) {
+  #     successful
+  #     message
+  #     serviceAccount {
+  #       id
+  #       locationId
+  #       customerId
+  #     }
+  #   }
+  # }
+  createServiceAccount(
+    input: CreateServiceAccountInput!
+  ): CreateServiceAccountOutput
+
+  # This query updates service account with customer and service location. Billing account will get
+  # linked/unlinked and marked primary based on billing account id.
+  # Service location also can be unlinked based on input.
+  # Sample request:
+  #
+  # mutation {
+  #   updateServiceAccount(
+  #     input: {
+  #       id: 370933991928553952
+  #       customer: {
+  #         firstName: "SuperMan"
+  #         lastName: "Kent1"
+  #         phoneNumber: "7711922883"
+  #         extension: null
+  #         email: "catDog@gmail.com"
+  #         title: "Dr."
+  #         leadSourceTypeId: "10100000009"
+  #         leadSourceId: "10100000008"
+  #         altFirstName: "MSI KATANA"
+  #         altLastName: "Dimitri"
+  #         referral: "no"
+  #         noEmail: false
+  #       }
+  #       serviceLocation: {
+  #         id: 370825657149704364
+  #         address1: "Haul Road"
+  #         address2: "313/27"
+  #         city: "Columbus"
+  #         state: "OH"
+  #         zipCode: "43207"
+  #         type: "Residential"
+  #         companyName: ""
+  #         lotId: "101"
+  #         subdivision: ""
+  #         directionNote: "added a new customer with new location"
+  #         ownerOccupied: true
+  #         latitude: 39.921417
+  #         longitude: -83.00219
+  #       }
+  #
+  #       #unlinkServiceLocationId: 100000025116
+  #       # primaryBillingAccountId: 10009999
+  #       # linkBillingAccountId: 100000025116
+  #       # unlinkBillingAccountId:100000025116
+  #     }
+  #   ) {
+  #     successful
+  #     message
+  #     serviceAccount {
+  #       id
+  #       customer {
+  #         firstName
+  #         lastName
+  #         phoneNumber
+  #         extension
+  #         email
+  #         title
+  #         leadSourceTypeId
+  #         leadSourceId
+  #         altFirstName
+  #         altLastName
+  #         referral
+  #         noEmail
+  #       }
+  #       serviceLocation {
+  #         id
+  #         address1
+  #         address2
+  #         city
+  #         state
+  #         zipCode
+  #         type
+  #         companyName
+  #         lotId
+  #         subdivision
+  #         directionNote
+  #         ownerOccupied
+  #         latitude
+  #         longitude
+  #       }
+  #       #unlinkServiceLocationId
+  #       #primaryBillingAccountId
+  #       #linkBillingAccountId
+  #       #unlinkBillingAccountId
+  #     }
+  #   }
+  # }
+  updateServiceAccount(
+    input: UpdateServiceAccountInput!
+  ): UpdateServiceAccountOutput
+  updateServiceAccountForAnnie(
+    input: UpdateServiceAccountInput!
+  ): UpdateServiceAccountOutput
+  createServiceAccountForAnnie(
+    input: CreateServiceAccountInput!
+  ): CreateServiceAccountOutput
+
+  # mutation PublishCallerIdentity($input: CallerIdentityInput!) {
+  #   publishCallerIdentity(input: $input) {
+  #     successful
+  #     message
+  #     errors {
+  #       path
+  #       errorMessage
+  #     }
+  #     callerIDQueryData {
+  #       callerIDQueryRecord {
+  #         callerId
+  #         tenantId
+  #         callKey
+  #         userKey
+  #         createDateTime
+  #         callerNumber
+  #         dnis
+  #         callerName
+  #         street
+  #         city
+  #         state
+  #         zip
+  #         phoneCallId
+  #         callTakenTenantId
+  #         callCleared
+  #       }
+  #     }
+  #   }
+  # }
+  publishCallerIdentity(input: CallerIdentityInput!): CallerIdentityOutput
+}
+
+type OTPResponse {
+  id: Long
+  widgetId: Long
+  success: Boolean
+  message: String
+}
+
+type OTPResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: OTPResponse
+}
+
+type PageableArBillingCustomerResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [ArBillingCustomerResponse]
+}
+
+type PageableAssignment {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [Assignment]
+}
+
+type PageableCustomBillingCustomersResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [customBillingCustomersResponse]
+}
+
+type PageableCustomerChangedResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [CustomerContentResponse]
+}
+
+type PageableDepartmentResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [DepartmentResponse]
+}
+
+type PageableEquipment {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [Equipment]
+}
+
+type PageableEquipmentResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [EquipmentResponse]
+}
+
+type PageableIntegrationObjectResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [IntegrationObjectResponse]
+}
+
+type PageableItemResponseJob {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [searchJobResponse]
+}
+
+type PageableLeadSource {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [LeadSourceResponse]
+}
+
+type PageableLeadSourceType {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [LeadSourceTypeResponse]
+}
+
+type PageableLocations {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [Locations]
+}
+
+type PageablePaymentMethodResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [PaymentMethodResponse]
+}
+
+type PageableScheduleCallResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [ScheduleCallResponseResponse]
+}
+
+type PageableTaxCodeResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [BedrockTaxCodeResponse]
+}
+
+type Payment {
+  id: Long
+  invoiceId: Long
+  amount: Float
+  type: String
+}
+
+type PaymentMethodResponse {
+  id: Long
+  paymentMethod: String
+  paymentType: String
+  active: Boolean
+  legacyPaymentType: String
+}
+
+type Query {
+  getAgreementById(agreementId: Long!): genRockAgreementResponse
+  queryAgreementById(agreementId: Long!): AgreementQueryOutput
+  searchAssignments(
+    input: SearchAssignmentInput
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]
+  ): PageableAssignment
+
+  # this query returns schedule blocks based on search criteria(job-class, job-type and date-range).
+  # You can use getJobClasses query to get job class and associated job type.
+  # startDate is a date time with zone eg. "2022-09-01T00:00:00+05:30"
+  # endDate is a date time with zone eg. "2022-10-01T00:00:00+05:30"
+  # Sample request:
+  #
+  # query {
+  #   getScheduleBlocks(startDate: "2022-09-01T00:00:00+05:30",
+  #   endDate: "2022-10-01T00:00:00+05:30",
+  #   jobClass: "Electrical",
+  #   jobType: "ElRep") {
+  # groupTimeSlotId
+  # groupName
+  # scheduleBlock
+  #     {
+  #     id
+  #     date
+  #     startTime
+  #     endTime
+  #     scheduled
+  #     slots
+  #     allowOverbooking
+  #     }
+  # }
+  # }
+  getScheduleBlocks(
+    groupTimeSlotId: String
+    jobClass: String!
+    jobType: String!
+    startDate: String!
+    endDate: String!
+  ): ScheduleGroupBlockOutput
+  getBookitScheduleBlocks(
+    groupTimeSlotId: String
+    jobClass: String
+    jobType: String
+    startDate: String!
+    endDate: String!
+  ): BookitScheduleGroupBlockResponseData
+  bookitSearchServiceAccount(
+    input: BookitSearchServiceAccountRequest
+  ): BookitServiceAccountResponseData
+  bookitSearchJobs(
+    input: BookitSearchJobRequest!
+    page: Int! = 0
+    size: Int! = 10
+  ): BookitJobResponseData
+  isWidgetDeleted(widgetId: String!): BookitBaseOutputData
+  getWidget(id: String!): BookitWidgetResponseData
+  findTermsAndConditions: BookitWidgetSettingResponseData
+  bookitRecommendedLocations(
+    keywords: String!
+    sessionToken: String!
+  ): BookitRecommendedLocationResponseData
+  bookitLocationDetail(
+    id: ID!
+    sessionToken: String!
+  ): BookitLocationDetailResponseData
+  getCommunicationPreferenceByLocationId(
+    locationId: Long!
+  ): [LocationCommunicationPreferenceResponse]
+  queryCommunicationPreferenceByLocationId(
+    locationId: Long!
+  ): CommunicationPreferenceQueryOutput
+  findBillingAccountsByServiceAccountId(
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]
+    serviceAccountId: Long!
+    billingAccounts: Boolean!
+  ): PageableArBillingCustomerResponse
+  getBillingCustomerById(billingCustomerID: Long): BillingCustomerOutput
+  searchJobs(
+    input: searchJobRequest!
+    page: Int! = 0
+    size: Int! = 10
+  ): PageableItemResponseJob
+
+  # Returns all active employee if employeeCode is null or empty and includes inactive if inactive is true.
+  fetchEmployees(
+    employeeCode: String = ""
+    inactive: Boolean = false
+  ): [EmployeeResponse]
+
+  # Returns all active employee if employeeCode is null or empty and includes inactive if inactive is true.
+  queryEmployees(
+    employeeCode: String = ""
+    inactive: Boolean = false
+  ): EmployeeQueryOutput
+
+  # Returns all active Location if location type is null or empty and includes inactive if inactive is true.
+  fetchLocation(
+    page: Int! = 0
+    size: Int! = 10
+    inactive: Boolean = false
+    locationTypes: String = ""
+  ): PageableLocations
+
+  # Returns all active Departments if departmentName is null or empty and includes inactive if inactive is true.
+  getDepartments(
+    departmentName: String = ""
+    page: Int! = 0
+    size: Int! = 10
+    inactive: Boolean = false
+  ): PageableDepartmentResponse
+
+  # Returns all active JobClass if jobClass is null or empty and includes inactive if inactive is true.
+  getJobClassesList(
+    jobClass: String = ""
+    inactive: Boolean = false
+  ): [JobClassResponse]
+
+  # Returns all active JobClass if jobClass is null or empty and includes inactive if inactive is true.
+  queryJobClasses(
+    jobClass: String = ""
+    inactive: Boolean = false
+  ): JobClassQueryOutput
+
+  # Returns all active paymentMethods if paymentMethod is null or empty and includes inactive if inactive is true.
+  getPaymentMethod(
+    page: Int! = 0
+    size: Int! = 10
+    inactive: Boolean = false
+    paymentMethod: String = ""
+  ): PageablePaymentMethodResponse
+
+  # Returns all active City for a zip code.
+  fetchReferenceLibraryCities(zipCode: String!): [CityResponse]
+
+  # Returns all active City for a zip code.
+  queryCitiesByZipCode(zipCode: String!): CityQueryOutput
+
+  # Returns all active Equipment if unitType is null or empty.
+  getEquipmentList(
+    page: Int! = 0
+    size: Int! = 10
+    unitType: String = ""
+    inactive: Boolean = false
+  ): PageableEquipmentResponse
+
+  # Returns all active LeadSource if code is null or empty and included inactive if inactive is true.
+  getLeadSourcesPageable(
+    page: Int! = 0
+    size: Int! = 10
+    inactive: Boolean = false
+    code: String = ""
+    dnis: String = ""
+  ): PageableLeadSource
+
+  # Returns all active LeadSource if leadSourceCode is null or empty and included inactive if inactive is true.
+  queryLeadSources(
+    leadSourceCode: String = ""
+    inactive: Boolean = false
+    dnis: String = ""
+  ): LeadSourceQueryOutput
+
+  # Returns all active LeadSource if leadSourceCode is null or empty and included inactive if inactive is true.
+  fetchReferenceLibraryLeadSources(
+    leadSourceCode: String = ""
+    inactive: Boolean = false
+    dnis: String = ""
+  ): [LeadSourceResponse]
+
+  # Returns all active LeadSourceTypes if code is null or empty and included inactive if inactive is true..
+  getLeadSourceTypesPageable(
+    page: Int! = 0
+    size: Int! = 10
+    inactive: Boolean = false
+    code: String = ""
+  ): PageableLeadSourceType
+
+  # Returns all active LeadSourceTypes if leadSourceTypeCode is null or empty and included inactive if inactive is true..
+  queryLeadSourceTypes(
+    leadSourceTypeCode: String = ""
+    inactive: Boolean = false
+  ): LeadSourceTypeQueryOutput
+
+  # Returns all active LeadSourceTypes if leadSourceTypeCode is null or empty and included inactive if inactive is true..
+  fetchReferenceLibraryLeadSourceTypes(
+    leadSourceTypeCode: String = ""
+    inactive: Boolean = false
+  ): [LeadSourceTypeResponse]
+
+  # Returns all active TaxCode if code is null or empty and includes inactive if inactive is null or empty.
+  getBedrockTaxCode(
+    page: Int! = 0
+    size: Int! = 10
+    code: String = ""
+    inactive: Boolean = false
+  ): PageableTaxCodeResponse
+
+  # Returns all active CustomerTitle if title is null or empty.
+  queryCustomerTitle(title: String = ""): CustomerTitleQueryOutput
+
+  # Returns all active CustomerTitle if title is null or empty.
+  getCustomerTitle(title: String = ""): [CustomerTitle]
+
+  # Returns all active Cities if city is null or empty.
+  queryCities(city: String = ""): CityQueryOutput
+
+  # Returns all active Cities if city is null or empty.
+  getCityZip(city: String = ""): [CityResponse]
+
+  # Returns all active JobAndCall if code is null or empty and includes inactive if inactive is true.
+  queryJobAndCalls(
+    code: String = ""
+    inactive: Boolean = false
+  ): JobAndCallQueryOutput
+
+  # Returns all active JobAndCall if code is null or empty and includes inactive if inactive is true.
+  getJobAndCall(code: String = "", inactive: Boolean = false): [JobAndCall]
+
+  # Returns all active Zone if zone is null or empty.
+  queryZones(zone: String = ""): ZoneQueryOutput
+
+  # Returns all active Zone if zone is null or empty.
+  getZones(zone: String = ""): [Zone]
+
+  # Returns all active JobClass if jobClassCode & jobTypeCode is null or empty and include inactive if inactive is true.
+  queryJobClassJobType(
+    jobClassCode: String = ""
+    jobTypeCode: String = ""
+    inactive: Boolean = false
+  ): JobClassJobTypeQueryOutput
+
+  # Returns all active JobClass if jobClassCode & jobTypeCode is null or empty and include inactive if inactive is true.
+  getJobClasses(
+    jobClassCode: String = ""
+    jobTypeCode: String = ""
+    inactive: Boolean = false
+  ): [JobClass]
+  listChangedCustomer(
+    changedAfter: String!
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]!
+  ): PageableCustomerChangedResponse
+  listChangedInvoice(
+    modifyDate: String!
+    page: Int! = 0
+    size: Int! = 10
+    sort: String!
+  ): PageableIntegrationObjectResponse
+  searchScheduledCalls(
+    input: SearchViewScheduleCallRequest!
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]
+  ): PageableScheduleCallResponse
+  getCustomInvoiceById(id: Long!): InvoiceCustomDtoResponse
+  findByBillingAccountId(billingAccountId: Long!): AccountDetail
+  queryCustomInvoiceById(id: Long!): CustomInvoiceQueryOutput
+  queryAccountById(billingAccountId: Long!): AccountQueryOutput
+  searchArBillingCustomers(
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]
+    input: searchBillingCustomersRequest!
+  ): PageableCustomBillingCustomersResponse
+  getTimeSlotDetail(groupName: String!): GroupTimeSlotOutput
+  queryTimeSlot(groupName: String!): TimeSlotQueryOutput
+  getLocationById(id: Long!): LocationResponse
+  queryLocationById(id: Long!): LocationQueryOutput
+  searchEquipmentsByServiceAccountId(
+    serviceAccountId: Long!
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]
+  ): PageableEquipment
+  searchServiceAccounts(
+    input: SearchServiceAccountRequest
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]
+  ): pagedResponseGen2ServiceAccount
+  getLocations(locationId: Long!): LocationDetails
+  getLocationInfoByLocationId(locationId: Long!): LocationOutput
+  queryCustomerFlexData(
+    input: SearchCustomerRequest
+    page: Int! = 0
+    size: Int! = 10
+    sort: [String]
+  ): pagedResponseSearchCustomerResponse
+
+  # Sample input:
+  # {
+  # 	"cardStartDate": "2025-01-10T05:00:00Z",
+  # 	"cardEndDate": "2025-01-15T04:59:59Z",
+  # 	"empCodes": [
+  # 		"DEEUAT",
+  # 		"KARKUM",
+  # 		"PIYUSH",
+  # 		"SAURAB",
+  # 		"1723"
+  # 	]
+  # }
+  #
+  # cardStartDate : Mandatory and will pass date in required format as per above sample
+  # cardEndDate   : non-Mandatory and will pass date in required format as per above sample
+  # empCodes : Pass the employee code of technicians.
+  findNonJobTimecardEntries(
+    empCodes: [String]
+    cardStartDate: String!
+    cardEndDate: String
+  ): [TimeCardEntryEmployeeOutput]
+}
+
+input SMSNotificationRequest {
+  scheduledFor: String
+  companyName: String
+  startTime: String
+  endTime: String
+  customerFirstName: String
+  zipCode: String
+  phoneNumber: String
+  countryCode: String
+  confirmation: Boolean
+  cancel: Boolean
+  reschedule: Boolean
+}
+
+type SMSNotificationResponse {
+  success: Boolean
+  message: String
+}
+
+type SaleTypeDto {
+  id: Long
+  saleTypeCode: String
+}
+
+input SaleTypeInput {
+  id: Long
+  saleTypeCode: String
+}
+
+type ScheduleBlock {
+  # Autogenerated id
+  id: Long
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  date: String
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  startTime: String
+
+  # Clock Time e.g.  "6:00 AM
+  startTimeText: String
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  endTime: String
+
+  # Clock Time e.g.  "6:00 AM
+  endTimeText: String
+  scheduled: Int
+  slots: Int
+  allowOverbooking: Boolean
+  dateLocal: String
+  startTimeLocal: String
+  endTimeLocal: String
+}
+
+type ScheduleCallResponseResponse {
+  jobId: Long
+  callId: Long
+  callDate: String
+  priorityLevel: Boolean
+  callType: String
+  accountLastName: String
+  accountFirstName: String
+  accountAddress1: String
+  accountAddress2: String
+  accountCity: String
+  accountState: String
+  accountZip: String
+  accountCustTitle: String
+  currentBalance: BigDecimal
+  customerRatingId: String
+  billingCustomerId: String
+  subdivision: String
+  emailAddress: String
+  leadSourceType: String
+  leadSource: String
+  jobClass: String
+  jobType: String
+  jobNumber: String
+  jobStatus: String
+  isSaleEst: String
+  assignmentId: Long
+  employeeCode: String
+  notified: String
+  dispatched: String
+  onsiteAt: String
+  completedAt: String
+
+  # Deprecated. Use scheduledDT instead.
+  assignmentDate: String
+  scheduledDate: String
+
+  # This is in minutes.
+  actualDuration: Int
+  firstName: String
+  lastName: String
+  companyName: String
+  locationId: Long
+  zoneId: String
+  warrantyType: String
+  city: String
+  state: String
+  zipCode: String
+  address1: String
+  address2: String
+  phoneNumber: String
+  extension: String
+  unitType: String
+  department: String
+  assignmentProgress: String
+  instructions: String
+  contractNo: String
+  contact: String
+  claimNo: String
+  callbackJobNo: String
+  customerPONum: String
+  unitSize: String
+  unitAge: String
+  agreementType: String
+  primaryEmp: String
+  arBillingCustomerId: Long
+  accountPhone1: String
+  accountPhone1Ext: String
+
+  # If tech is onsite then onsite time will get populated else scheduled time will get populated.
+  callScheduledDT: String
+
+  # If tech is onsite then onsite time will get populated else scheduled time will get populated.
+  callScheduledDate: String
+  dnis: String
+  callScheduledDTLocal: String
+  callScheduledDateLocal: String
+  notifiedLocal: String
+  dispatchedLocal: String
+  onsiteAtLocal: String
+  completedAtLocal: String
+  assignmentDateLocal: String
+  scheduledDateLocal: String
+  callDateLocal: String
+  installedDateLocal: String
+
+  # This is in minutes.
+  estimatedDuration: Int
+  actualDurationInHours: String
+  estimatedDurationInHours: String
+  scheduledDT: String
+}
+
+type ScheduleGroupBlock {
+  # Autogenerated id
+  groupTimeSlotId: Long
+
+  # This will be jobclass-jobtype
+  groupName: String
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  scheduleStartDate: String
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  scheduleEndDate: String
+  scheduleBlock: [ScheduleBlock]
+  scheduleStartDateLocal: String
+  scheduleEndDateLocal: String
+}
+
+type ScheduleGroupBlockOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  scheduleGroupBlock: ScheduleGroupBlock
+}
+
+input ScheduleJobInput {
+  id: Long!
+  scheduledFor: String!
+  notes: String
+  priority: Boolean
+  priorityLevel: Int
+  assignmentIds: [Long]
+  employeeCode: String
+}
+
+type ScheduleJobOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  scheduleJobResponse: ScheduleJobResponse
+}
+
+type ScheduleJobResponse {
+  id: Long!
+  scheduledFor: String!
+  notes: String
+}
+
+type SearchAccountResponse {
+  locationId: Long
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  zone: String
+  lastName: String
+  firstName: String
+  companyName: String
+  phone1: String
+  phone1Ext: String
+  phone2: String
+  phone2Ext: String
+  email: String
+}
+
+input SearchAssignmentInput {
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  assignedAfter: String
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  assignedBefore: String
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  scheduleForAfter: String
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  scheduleForBefore: String
+  completedBefore: String
+  employeeCodes: [String]
+  jobId: Long
+  statuses: [String]
+  jobAssignmentsCompleted: Boolean
+  jobStatus: String
+  primary: Boolean
+  jobClass: String
+  jobType: String
+  jobNumber: [String]
+  estimatedDuration: [Int]
+  searchText: String
+  geocodingEnabled: Boolean
+}
+
+input SearchCustomerRequest {
+  locationId: Long
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  lastName: String
+  firstName: String
+  companyName: String
+  phone: String
+  emailId: String
+}
+
+input SearchServiceAccountRequest {
+  address1: String
+  companyName: [String]
+  customerId: Long
+  ids: [Long]
+  firstName: [String]
+  lastName: [String]
+  locationId: Long
+  locationIds: [Long]
+  phoneNumber: String
+  serviceAccountId: Long
+  searchText: String
+  emailId: String
+  city: String
+  state: String
+  zipCode: String
+  isPhoneNumberEmpty: Boolean
+  isEmailEmpty: Boolean
+  keepOwnerOccupied: Boolean
+  searchAddressText: String
+  notOwnerOccupied: Boolean
+  searchType: String
+}
+
+input SearchViewScheduleCallRequest {
+  # This field will be in the format of "1970-01-01T06:00:00Z"
+  assignmentDate: String
+
+  # This field will be in the format of "1970-01-01T06:00:00Z"
+  assignmentDateThru: String
+  employeeCode: String
+  department: String
+  jobClass: String
+  jobType: String
+  zoneId: String
+
+  # Deprecated.  Please use assignmentDateFrom  & assignmentDateThru
+  # Call date will not filter assignments but calls.
+  # This field will be in the format of "1970-01-01T06:00:00Z"
+  callDate: String
+
+  # Deprecated.  Please use assignmentDateFrom  & assignmentDateThru
+  # Call date will not filter assignments but calls.
+  # This field will be in the format of "1970-01-01T06:00:00Z"
+  callDateThru: String
+  callId: String
+  jobId: String
+}
+
+type ServiceAccount {
+  id: Long
+}
+
+type ServiceAccountResponse {
+  id: Long
+  customer: CustomerResponse
+  serviceLocations: [LocationResponse]
+  primaryBillingAddress: ArBillingCustomerServiceResponse
+  billingAccountOutput: BillingCustomerServiceOutput
+  primaryBillingCustomerId: Long
+}
+
+input SessionRequest {
+  addCallerID: AddCallerID!
+}
+
+type TimeCardEntryEmployeeOutput {
+  employeeCode: String
+  nonJobTimecardEntries: [TimeCardEntryOutput]
+}
+
+type TimeCardEntryOutput {
+  # Autogenerated id
+  id: Long
+  cardDate: String
+  status: String
+  itemNumber: String
+  employeeCode: String
+  premiumCode: String
+  department: String
+  comment: String
+  timeIn: String
+  timeOut: String
+  isPaid: Boolean
+  duration: String
+  regularTime: String
+  premiumTime: String
+  nonPaidTime: String
+  nonRegularTime: String
+  manualOvertime: String
+  autoOvertime: String
+  dailyHoursAccumulated: String
+  weeklyHoursAccumulated: String
+  dailyOvertimeAccumulated: String
+  weeklyOvertimeAccumulated: String
+  totalTime: String
+  isRegularOvertime: Boolean
+  totalOvertime: String
+  regularRate: BigDecimal
+  utcTimeIn: Date
+  utcTimeOut: Date
+  totalHours: String
+  totalRegularTime: String
+  overTimeSum: String
+  totalPremiumTime: String
+  totalNonRegularTime: String
+  totalNonPaidTime: String
+  totalWeeklyTime: String
+
+  # job details.
+  job: JobDto
+  isOvertimeModified: Boolean
+  payAtAverageRegularRate: Boolean
+  doubleTimeRate: BigDecimal
+  autoDoubleTime: String
+  dailyDoubleTime: String
+  manualDoubleTime: String
+  totalDoubleTime: String
+  dailyDoubleTimeAccumulated: String
+  paidTimeOff: Boolean
+}
+
+type TimeSlotQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  timeSlot: GroupTimeSlotOutput
+}
+
+input UpdateCustomerInput {
+  id: Long
+
+  # First Name is mandatory if commercial field value is false else optional.
+  firstName: String
+
+  # Last Name is mandatory if commercial field value is false else optional.
+  lastName: String
+
+  # Company Name is mandatory if commercial field value is true else optional.
+  companyName: String
+  phoneNumber: String
+  extension: String
+
+  # This is mandatory if noEmail field value is false else optional.
+  email: String
+  title: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  altFirstName: String
+  altLastName: String
+  referral: String
+
+  # If this is true then email is optional else email is mandatory and service will throw error.
+  noEmail: Boolean!
+  commercial: Boolean
+  alternameNameInAddress: Boolean
+  alternateTitle: String
+  phone1Ext: String
+  phone2: String
+  phone2Ext: String
+  phone3: String
+  phone3Ext: String
+  phone4: String
+  phone4Ext: String
+  sourceType: String
+  leadSource: String
+  dnis: String
+}
+
+type UpdateCustomerOutput {
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  extension: String
+  email: String
+  title: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  altFirstName: String
+  altLastName: String
+  referral: String
+  noEmail: Boolean
+  alternameNameInAddress: Boolean
+  alternateTitle: String
+  phone1Ext: String
+  phone2: String
+  phone2Ext: String
+  phone3: String
+  phone3Ext: String
+  phone4: String
+  phone4Ext: String
+}
+
+# Sample input:
+#
+# {
+#   "input": {
+#     "id": "361781738072095126",
+#     "jobClass":"Maintainance",
+#     "jobType":"Electrical",
+#     "category": "Service",
+#     "workRequestNotes": "I need heater.",
+#     "scheduledFor":"1970-01-01T06:00:00Z"
+#     }
+# }
+input UpdateJobInput {
+  id: Long!
+
+  # fetched from reference library system. use getJobClasses query to get data.
+  jobClass: String
+
+  # fetched from reference library system associated with job-class.
+  # use getJobClasses query to get data.
+  jobType: String
+
+  # fetched from reference library system associated with job-class.
+  # use getJobClasses query to get data.
+  jobTypeDescription: String
+
+  # This is service location id. use searchServiceAccounts query to get data.
+  locationId: Long
+
+  # time interval (e.g. 6:00 PM - 8:00 PM). This is from schedule blocks.
+  timePreference: String
+
+  # This must be in minutes and being fetched from reference library system associated with
+  # job-class. use getJobClasses query to get data.
+  estimatedDuration: Int
+
+  # date time (e.g. 2022-09-05T12:30:00Z)
+  scheduledFor: String
+
+  # fetched from reference library system associated with job-class & job-type(by default).
+  # use getJobClasses query to get data. if getJobClasses does not have department associated with
+  # job-class use getDepartments.
+  departmentId: Long
+
+  # lead source type id fetched from reference library system. use
+  # fetchReferenceLibraryLeadSourceTypes to get data.
+  leadSourceTypeId: Long
+
+  # lead source id fetched from reference library system  associated with lead-source.
+  # use fetchReferenceLibraryLeadSourceTypes to get data.
+  leadSourceId: Long
+
+  # this is preferred technician employee code and it's optional while creating job.
+  # - It's an optional field
+  # - scheduledFor is mandatory if employeeCode is being sent. Even if it is being sent as ""(empty string)
+  # - All the assignments with status "UNSCHEDULED", "UNASSIGNED", "ASSIGNED" or "NOTIFIED" will be updated with provided employee code
+  # - Assignments which are in "UNSCHEDULED" or "UNASSIGNED" status, will be marked as "ASSIGNED"
+  # - For marking any assignment as "UNASSIGNED", employeeCode to be sent as ""
+  # - if employeeCode being sent as "" and scheduleFor as null then all eligible assignments will be marked as "UNSCHEDULED"
+  # Eligible assignemnts are with status - "UNSCHEDULED", "UNASSIGNED", "ASSIGNED" or "NOTIFIED"
+  employeeCode: String
+
+  # This is enum and value will be one of [ OPEN, CLOSED, ABORTED, CANCELED, INVOICED,
+  # POSTPENDING, SCHEDULED, COMPLETED]
+  status: String
+
+  # fetched from reference library.
+  # use fetchReferenceLibraryCities to get data based service location
+  zoneId: Long
+  isJobHavingIssue: Boolean
+  serviceAccountId: Long
+  priority: Boolean
+  callId: Long
+  callbackJobNumber: String
+  campaignId: Long
+  opportunityId: Long
+  visitIds: [Long]
+  category: String
+
+  # This is Gen2 work request notes or Gen1 work instructions.
+  notes: String
+  isNotified: Boolean
+  sendReminder: Boolean
+  priorityLevel: Int
+  replaceNotes: Boolean
+}
+
+type UpdateJobNotesOutput {
+  successful: Boolean
+  message: String
+  jobNotes: UpdateJobNotesResponse
+  errors: [Error]
+}
+
+type UpdateJobNotesResponse {
+  id: Long!
+  jobNotes: String
+}
+
+type UpdateJobOutput {
+  successful: Boolean
+  message: String
+  jobData: UpdateJobResponse
+  errors: [Error]
+}
+
+type UpdateJobResponse {
+  id: Long
+  number: String
+  jobClass: String
+  jobType: String
+  jobTypeDescription: String
+  locationId: Long
+  timePreference: String
+  estimatedDuration: Int
+  scheduledFor: String
+  departmentId: Long
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  employeeCode: String
+  status: String
+  zoneId: Long
+  isJobHavingIssue: Boolean
+  serviceAccountId: Long
+  priority: Boolean
+  callId: Long
+  callbackJobNumber: String
+  campaignId: Long
+  opportunityId: Long
+  visitIds: [Long]
+  category: String
+
+  # This is Gen2 work request notes or Gen1 work instructions.
+  notes: String
+  startDate: String
+  endDate: String
+}
+
+input UpdateLocationInput {
+  # if id is null in input then it is autogenerated and a new location is created. else the
+  # location detail is updated.
+  id: Long
+  address1: String!
+  address2: String
+  city: String!
+  state: String!
+  zipCode: String!
+
+  # Type is plain text and it's location type description.
+  type: String!
+
+  # Company name is plain text and it's mandatory if type is commercial.
+  companyName: String
+  lotId: String
+  subdivision: String
+  directionNote: String
+  ownerOccupied: Boolean
+  latitude: Float
+  longitude: Float
+  notes: String
+  previousOwner: String
+  contact: String
+  contractArBillingCustomerId: Long
+  contractComment: String
+  contractNo: String
+  priority: Boolean
+  serviceType: String
+  sizeOfService: Int
+  zone: String
+  mapCode: String
+  preferredTech: String
+  phaseSpec: String
+}
+
+type UpdateLocationOutput {
+  id: Long
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+  type: String
+  companyName: String
+  lotId: String
+  subdivision: String
+  directionNote: String
+  ownerOccupied: Boolean
+  latitude: Float
+  longitude: Float
+  notes: String
+  previousOwner: String
+  contact: String
+  contractArBillingCustomerId: Long
+  contractComment: String
+  contractNo: String
+  priority: Boolean
+  serviceType: String
+  sizeOfService: Int
+  zone: String
+  mapCode: String
+  preferredTech: String
+  phaseSpec: String
+}
+
+input UpdateServiceAccountInput {
+  id: Long!
+  customer: UpdateCustomerInput
+  serviceLocation: UpdateLocationInput
+
+  # Service Location Id which need to be unlinked from service account
+  unlinkServiceLocationId: Long
+
+  # Billing Account Id which need to be primary billing account for service account
+  primaryBillingAccountId: Long
+
+  # Billing Account Id which need to be linked to service account
+  linkBillingAccountId: Long
+
+  # Billing Account Id which need to be unlinked to service account
+  unlinkBillingAccountId: Long
+}
+
+type UpdateServiceAccountOutput {
+  successful: Boolean
+  message: String
+  serviceAccount: UpdateServiceAccountResponse
+  errors: [Error]
+}
+
+type UpdateServiceAccountResponse {
+  id: Long
+  customer: UpdateCustomerOutput
+  serviceLocation: UpdateLocationOutput
+  unlinkServiceLocationId: Long
+  primaryBillingAccountId: Long
+  linkBillingAccountId: Long
+  unlinkBillingAccountId: Long
+}
+
+input VerifyOTPRequest {
+  id: Long!
+  loginUser: String!
+  otp: String!
+}
+
+type VerifyOTPResponse {
+  id: Long
+  widgetId: Long
+  message: String
+  verified: Boolean
+}
+
+type VerifyOTPResponseData {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  response: VerifyOTPResponse
+}
+
+type Visit {
+  id: Long
+  agreementId: Long
+  type: VisitType
+  scheduledYearMonth: String
+  status: String
+  notes: String
+  overdue: Boolean
+  preferredTech: String
+  scheduleDate: String
+  overdueStatus: String
+  lastVisitDate: String
+  jobId: Long
+}
+
+type VisitType {
+  code: String
+  description: String
+  estimatedDuration: Int
+}
+
+type Warranty {
+  id: Long
+  number: String
+  type: String
+  typeDescription: String
+  reserveBalance: Float
+  providedBy: String
+  vendor: String
+  startDate: String
+  laborEndDate: String
+  partsEndDate: String
+  inHouse: Boolean
+  startDateLocal: String
+  laborEndDateLocal: String
+  partsEndDateLocal: String
+}
+
+type Zone {
+  id: Long
+
+  # zone was primary key in legacy application so will be used as legacy id.
+  zone: String
+  description: String
+  zoneId: String
+}
+
+type ZoneQueryOutput {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  zones: [Zone]
+}
+
+type agreementDepartmentResponse {
+  id: Long
+  departmentName: String
+  departmentDesc: String
+  callsPerDay: Int
+  slotsPerDay: Int
+  active: Boolean
+}
+
+type agreementDtoObj {
+  hasAgreement: Boolean
+  hasPerpetualAgreement: Boolean
+  agreementStartDate: String
+  agreementEndDate: String
+  agreementStartDateLocal: String
+  agreementEndDateLocal: String
+}
+
+type agreementResponse {
+  id: Long
+  agreementNumber: String
+  cover: Int
+  csrSale: Boolean
+  billingMethod: Int
+  renewedFromId: Long
+  lastNotice: String
+  year: Int
+  createdDate: String
+  saleDate: String
+  startDate: String
+  endDate: String
+  renewalId: Long
+  invoiced: Boolean
+  perpetual: Boolean
+  renewalCreated: Boolean
+  renewalAccepted: Boolean
+  renewalFailed: Boolean
+  renewalCreatedDate: String
+  renewDate: String
+  renewal: Boolean
+  activated: Boolean
+  fulfilled: Boolean
+  canceled: Boolean
+  terminated: Boolean
+  terminateDate: String
+  billStartDate: String
+  billFrequency: String
+  methodOfPayment: String
+  paymentType: String
+  nextVisitMonth: Int
+  nextVisitYear: Int
+  lastBilling: String
+  nextBilling: String
+  salesPerson: String
+  totalPrice: Float
+  deposit: Float
+  billAmount: Float
+  collectPerVisit: Float
+  taxBill: Boolean
+  visitCount: Int
+  compVisitCount: Int
+  cancelVisitCount: Int
+  preferredTech: String
+  agreementEquipAge: Int
+  visitLeft: Int
+  department: agreementDepartmentResponse
+  agreementType: agreementTypeResponse
+  invoice: invoiceAgreementResponse
+  billDayOfMonth: Int
+  xchargeAllowDuplicate: Boolean
+  renewalNoticesCount: String
+  creditCardSortField: String
+  compBillingCount: Int
+  businessAgreementId: Long
+  businessAgreementNumber: Long
+  serviceAccountId: Long
+  billAmountMaintenance: Float
+  billAmountService: Float
+  useDefer: Boolean
+  useReserve: Boolean
+  allowVisitsInStartMonth: Boolean
+  serviceDeposit: Float
+  depositDeferred: Float
+  maintenanceDeposit: Float
+  collectPerVisitMaintenance: Float
+  collectPerVisitService: Float
+  totalDeferred: Float
+  deferralUsed: Float
+  amortizeDefer: Boolean
+  creditPerVisit: Float
+  lastVisit: String
+  floatVisit: Boolean
+  agreementVisitScheduleId: Long
+  visitResumeMonth: Int
+  visitResumeYear: Int
+  locationId: Long
+  visitStartMonth: Int
+  visitStartYear: Int
+  discountTypeId: Long
+  visitPerYear: Int
+  preferredTechEmployeeId: Long
+  totalNumberBilling: Int
+  gen2RenewFromId: Long
+  activationFee: Float
+  maintenancePrice: Float
+  visitsPerYear: Int
+  servicePrice: Float
+  depositReserved: Float
+  commissionNew: Float
+  commissionAnniversary: Float
+  commissionRenew: Float
+  balance: Float
+  billingsPerYear: Int
+  renewalIdCreated: Long
+  originalAgreementNumber: String
+  originalSalesPerson: String
+  originalStartDate: String
+  agreementTypeName: String
+  originalEndDate: String
+  originalReserve: Float
+  reserveCharges: Float
+  comment: String
+  createdDateLocal: String
+  saleDateLocal: String
+  startDateLocal: String
+  endDateLocal: String
+  renewalCreatedDateLocal: String
+  renewDateLocal: String
+  terminateDateLocal: String
+  billStartDateLocal: String
+  originalStartDateLocal: String
+  originalEndDateLocal: String
+}
+
+type agreementTypeResponse {
+  id: Long
+  agreementTypeName: String
+  agreementTypeDesc: String
+}
+
+type arAlternateAddressGen2Response {
+  id: Long
+  arBillingCustomerId: Long
+  alternateAddress1: String
+  alternateAddress2: String
+  alternateApContact: String
+  alternateCity: String
+  alternatePhone: String
+  alternatePhoneExtension: String
+  alternateState: String
+  alternateZip: String
+  notes: String
+}
+
+input arAlternateAddressRequest {
+  id: Long
+  arBillingCustomerId: Long
+  alternateAddress1: String
+  alternateAddress2: String
+  alternateApContact: String
+  alternateCity: String
+  alternatePhone: String
+  alternatePhoneExtension: String
+  alternateState: String
+  alternateZip: String
+  notes: String
+}
+
+type arAlternateAddressResponse {
+  id: Long
+  arBillingCustomerId: Long
+  alternateAddress1: String
+  alternateAddress2: String
+  alternateApContact: String
+  alternateCity: String
+  alternatePhone: String
+  alternatePhoneExtension: String
+  alternateState: String
+  alternateZip: String
+  notes: String
+}
+
+input arBillingCustomerRequest {
+  apContact: String
+  serviceContact: String
+  creditLimit: Float
+  customerRating: customerRatingRequest
+  balanceDue: Float
+  paymentMethod: ArBillingCustomerPaymentMethodRequest
+  badRiskCustomer: Boolean
+  doNotSolicit: Boolean
+  happyChecks: Boolean
+  creditCardNumber: String
+  creditCardName: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  financeCharge: Boolean
+  primaryAddress: Boolean
+  active: Boolean
+  taxExemptNumber: String
+  counterSale: Boolean
+  xchargeAlias: String
+  xchargeClean: Boolean
+  checkBankAccountNumber: String
+  salesPersonId: Long
+
+  # Deprecated. Billing account will get linked to service account using updateServiceAccount query.
+  serviceAccountId: Long
+  statement: Boolean
+  paymentTerms: ArBillingCustomerPaymentTermsRequest
+  arAlternateAddressId: Long
+  financeChargeAmount: Float
+  currentBalance: Float
+  lastAgeDate: String
+  noStatement: Boolean
+  openCount: Int
+  over30Balance: Float
+  over60Balance: Float
+  over90Balance: Float
+  noFinanceCharge: Boolean
+  lastFinanceDate: String
+  retainedBalance: Float
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arBillingLocationId: Long
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arAlternateLocationId: Long
+  title: String
+  firstName: String
+  lastName: String
+  alternateFirstName: String
+  alternateLastName: String
+  comments: String
+  companyName: String
+  cellPhone: String
+  customerChangeUtcdt: String
+  customerTitle2: String
+  faxPhone: String
+  noEmail: Boolean
+  phoneNumber: String
+  phoneNumber2: String
+  phoneNumber3: String
+  phoneNumber4: String
+  email: String
+  name2InAddress: Boolean
+  alternateTitle: String
+  phoneExtension: String
+  phone2Extension: String
+  phone3Extension: String
+  phone4Extension: String
+  arAlternateAddress: arAlternateAddressRequest
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+}
+
+input arBillingCustomerUpdateRequest {
+  id: Long
+  billingCustomerId: String
+  apContact: String
+  serviceContact: String
+  creditLimit: Float
+  customerRating: customerRatingRequest
+  balanceDue: Float
+  paymentMethod: ArBillingCustomerPaymentMethodRequest
+  badRiskCustomer: Boolean
+  doNotSolicit: Boolean
+  happyChecks: Boolean
+  creditCardNumber: String
+  creditCardName: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  financeCharge: Boolean
+  primaryAddress: Boolean
+  active: Boolean
+  taxExemptNumber: String
+  counterSale: Boolean
+  xchargeAlias: String
+  xchargeClean: Boolean
+  checkBankAccountNumber: String
+  salesPersonId: Long
+
+  # Deprecated. Billing account will get linked to service account using updateServiceAccount query.
+  serviceAccountId: Long
+  statement: Boolean
+  paymentTerms: ArBillingCustomerPaymentTermsRequest
+  arAlternateAddressId: Long
+  currentBalance: Float
+  noStatement: Boolean
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arBillingLocationId: Long
+
+  # Deprecated. Billing account will get linked to service account/location using updateServiceAccount query.
+  arAlternateLocationId: Long
+  title: String
+  firstName: String
+  lastName: String
+  alternateFirstName: String
+  alternateLastName: String
+  comments: String
+  companyName: String
+  cellPhone: String
+  customerTitle2: String
+  faxPhone: String
+  noEmail: Boolean
+  phoneNumber: String
+  phoneNumber2: String
+  phoneNumber3: String
+  phoneNumber4: String
+  email: String
+  name2InAddress: Boolean
+  alternateTitle: String
+  phoneExtension: String
+  phone2Extension: String
+  phone3Extension: String
+  phone4Extension: String
+  arAlternateAddress: arAlternateAddressRequest
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zipCode: String
+}
+
+type arReceivableAgreementResponse {
+  balance: Float
+  invoiceId: Long
+  receivableType: String
+  negateMasterId: Long
+  transactionMasterId: Long
+}
+
+type creditCardTransactionResponse {
+  creditCardPaymentId: Long
+  processedDate: String
+  responseCode: String
+  cardType: String
+  currentStatus: String
+  detailedResponse1: String
+  approved: Boolean
+}
+
+type customBillingCustomersResponse {
+  id: Long
+  lastName: String
+  companyName: String
+  address1: String
+  phoneNumber: String
+  phone2: String
+  phone3: String
+  phone4: String
+  lastName2: String
+  firstName2: String
+  firstName: String
+  city: String
+  state: String
+  zipCode: String
+  billingCustomerId: String
+  email: String
+  address2: String
+}
+
+type customerDetailDtoObj {
+  billingAccountID: String
+  billingFirstName: String
+  billingLastName: String
+  billingCompanyName: String
+  billingAddress1: String
+  billingAddress2: String
+  billingCity: String
+  billingState: String
+  billingZip: String
+  billingPhone1: String
+  billingEmailAddress: String
+  doNotSolicit: Boolean
+  noHappyChecks: Boolean
+  billingAddDate: String
+  custChangeBillingCommPrefList: [CustChangeBillList]
+  custChangeLocationCommPrefList: [CustChangeLocationList]
+  requestID: String
+}
+
+type customerRatingGen2Response {
+  id: Long
+  customerRatingName: String
+  customerRatingDescription: String
+}
+
+input customerRatingRequest {
+  id: Long
+  customerRatingName: String
+}
+
+type customerRatingResponse {
+  id: Long
+  customerRatingDescription: String
+  customerRatingName: String
+}
+
+type equipmentResponse {
+  id: Long
+  age: Int
+  unitType: String
+  unitTypeDescription: String
+  unitSize: String
+  circuitPanel: Boolean
+  equipmentSystem: String
+  manufacturer: String
+  manufacturerDescription: String
+  other: String
+  serialNo: String
+  modelNo: String
+  filterCount: Float
+  filterSize: String
+  conditionNotes: String
+  condition: String
+  evaluatedBy: String
+  evaluationDate: String
+  location: String
+  installedByUs: Boolean
+  installedBy: String
+  installedDate: String
+  soldBy: String
+  warranties: [gen2WarrantyResponse]
+  outOfService: Boolean
+  installCallId: Long
+}
+
+type gen2AgreementResponse {
+  id: Long
+  jobId: Long
+  code: String
+  startDate: String
+  preferredTech: String
+  billingMethod: Int
+  billingMethodText: String
+  totalAmount: Float
+  deposit: Float
+  description: String
+  covers: Int
+  coversText: String
+  term: String
+  visitsPerYear: Int
+  years: Int
+  totalVisits: Int
+  discountType: String
+  discountAmount: Float
+  discountPercentage: Int
+  endDate: String
+  soldBy: String
+  saleDate: String
+  number: String
+  paidAt: String
+  status: String
+  taxable: Boolean
+  renewFromAgreementId: Long
+  renewToAgreementId: Long
+  lastVisitDate: String
+  locationId: Long
+  maintenancePrice: Float
+  maintenanceDeposit: Float
+  servicePrice: Float
+  serviceDeposit: Float
+  billingMaintenanceAmount: Float
+  billingServiceAmount: Float
+  serviceAccount: ServiceAccountResponse
+  equipments: [equipmentResponse]
+  visitSchedules: [gen2AgreementVisitSchedules]
+  startDateLocal: String
+  endDateLocal: String
+  lastVisitDateLocal: String
+}
+
+type gen2AgreementVisitSchedules {
+  id: Long
+  type: String
+  months: [Int]
+  notes: String
+  estimatedHours: Float
+  collectMaint: Float
+  collectService: Float
+  collectTotal: Float
+  maintValuePerVisit: Float
+}
+
+input gen2Customer {
+  id: Long
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  extension: String
+  email: String
+  title: String
+  sourceType: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  noEmail: Boolean
+}
+
+type gen2SearchInvoiceItemResponse {
+  agreementId: String
+  chargeToAgreementId: Long
+  code: String
+  department: String
+  description: String
+  equipmentId: Long
+  id: Long
+  invoiceId: Long
+  price: Float
+  quantity: Float
+  taxable: Boolean
+  type: String
+  visitId: Long
+  warrantyId: Long
+}
+
+type gen2SearchInvoiceResponse {
+  id: Long
+  jobId: Long
+  type: String
+  number: String
+  taxCode: String
+  employeeCode: String
+  totalAmount: Float
+  arInvoiceId: Long
+  serviceAccountId: Long
+  locationId: Long
+  workCompletedNotes: String
+  workSuggestedNotes: String
+  invoiceItems: [gen2SearchInvoiceItemResponse]
+}
+
+input gen2ServiceAccountUpdateRequest {
+  id: String
+  customer: gen2Customer
+}
+
+type gen2WarrantyResponse {
+  id: Long
+  number: String
+  type: String
+  typeDescription: String
+  providedBy: String
+  vendor: String
+  startDate: String
+  reserveBalance: Float
+  laborEndDate: String
+  partsEndDate: String
+}
+
+type genRockAgreementResponse {
+  billingAgreement: gen2AgreementResponse
+  accountingAgreement: agreementResponse
+  visitScheduleResponse: [scheduleVisitResponse]
+  technicianName: String
+  salesPersonName: String
+}
+
+input genrockUpdateServiceAccountArBillingCustomerRequest {
+  serviceAccount: gen2ServiceAccountUpdateRequest
+  arBillingCustomerAccount: arBillingCustomerRequest
+}
+
+type invoiceAgreementResponse {
+  id: Long
+  invoiceNumber: String
+  invoiceDate: String
+  totalAmount: Float
+  printDate: String
+  printBatch: Int
+  paymentAmount: Float
+  customerPoNumber: String
+  posted: Boolean
+  adjusted: Boolean
+  adjusting: Boolean
+  printInBatch: Boolean
+  subTotal: Float
+  netBalance: Float
+  taxAmount: Float
+  lessAmount: Float
+  discountAmount: Float
+  subAfterDiscount: Float
+  paymentDate: String
+  creditCardNumber: String
+  creditCardName: String
+  creditCardAuthRef: String
+  creditCardExpireMonth: Int
+  creditCardExpireYear: Int
+  creditCardPaymentId: Long
+  achTransactionId: Long
+  achExported: Boolean
+  xchargePaymentEnabled: Boolean
+  xchargeAlias: String
+  InvoiceTypeName: String
+  recurringId: String
+  balance: Float
+  invoiceItem: [invoiceItemResponse]
+  creditCardTransaction: creditCardTransactionResponse
+  paymentType: paymentTypeResponse
+  paymentMethod: paymentMethodResponse
+  arReceivable: [arReceivableAgreementResponse]
+}
+
+type invoiceItemResponse {
+  invoiceId: Long
+  saleType: saleTypeResponse
+}
+
+input invoiceTypeRequest {
+  id: Long
+  invoiceTypeName: String
+}
+
+type jobClassResponse {
+  jobClassId: Long
+  code: String
+  active: Boolean
+  saleEst: Boolean
+}
+
+type locationDtoObj {
+  locationID: Long
+  locationFirstName: String
+  locationLastName: String
+  locationCompanyName: String
+  locationAddress1: String
+  locationAddress2: String
+  locationCity: String
+  locationState: String
+  locationZip: String
+  locationPhone1: String
+  locationEmailAddress: String
+  locationLocationType: String
+  locationLeadSource: String
+  locationAddDate: String
+  locationAddDateLocal: String
+  agreement: [AgreementObj]
+}
+
+type pagedResponseGen2ServiceAccount {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [ServiceAccountResponse]
+}
+
+type pagedResponseSearchCustomerResponse {
+  successful: Boolean
+  message: String
+  errors: [Error]
+  totalElements: Int
+  totalPages: Int
+  pageSize: Int
+  pageNumber: Int
+  numberOfElements: Int
+  content: [SearchAccountResponse]
+}
+
+type paymentMethodResponse {
+  paymentMethodName: String
+  paymentTypeId: Long
+  active: Boolean
+}
+
+type paymentTypeResponse {
+  paymentTypeName: String
+  active: Boolean
+  editable: Boolean
+}
+
+input projectRequest {
+  id: Long
+  projectNumber: String
+}
+
+type projectResponse {
+  id: Long
+  projectNumber: String
+}
+
+type saleTypeResponse {
+  saleTypeCode: String
+}
+
+type scheduleVisitResponse {
+  visitType: String
+  estimatedHours: Float
+  months: [Int]
+  collectMaintenance: Float
+  collectService: Float
+  collectTotal: Float
+  maintenanceValueVisit: Float
+  visitNotes: String
+  visitTypeDescription: String
+}
+
+input searchBillingCustomersRequest {
+  address: String
+  companyName: String
+  lastName: String
+  phone: String
+  billingCustomerId: String
+  open: Boolean
+  overDue: Boolean
+  outOfBalance: Boolean
+  retaingae: Boolean
+  doNotSolicit: Boolean
+  happyChecks: Boolean
+  isPhoneEmpty: Boolean
+  isEmailEmpty: Boolean
+
+  # searchType indicates search algorithm on string pattern (e.g.: STARTS_WITH or default)
+  # supported values are STARTS_WITH or any other string.
+  # Currently system supports only STARTS_WITH or default search.
+  searchType: String
+}
+
+input searchJobRequest {
+  closed: Boolean
+  status: [String]
+  jobNumbers: [String]
+  ids: [Long]
+  locationId: Long
+  serviceAccountId: Long
+  reviewed: Boolean
+  assignmentsCompleted: Boolean
+  opportunityIds: [Long]
+  canceled: Boolean
+  employeeCode: [String]
+  scheduledFor: String
+  jobType: [String]
+  jobClass: [String]
+  callIds: [Long]
+  createdBy: [String]
+  priority: Boolean
+  beginScheduledFor: String
+  endScheduledFor: String
+  needFollowUp: Boolean
+  customerName: [String]
+  phoneNumber: [String]
+  futureJob: Boolean
+  isNotScheduled: Boolean
+  prefixSearch: String
+  searchType: String
+}
+
+type searchJobResponse {
+  id: Long
+  number: String
+  jobClass: String
+  jobType: String
+  jobTypeDescription: String
+  status: String
+  serviceAccountId: Long
+  locationId: Long
+  department: String
+  leadSourceType: String
+  zoneId: Long
+  startDate: String
+  endDate: String
+  scheduledFor: String
+  callId: Long
+  departmentId: Long
+  phoneNumber: String
+  leadSourceTypeId: Long
+  leadSourceId: Long
+  customerPONumber: String
+  contact: String
+  claimNo: String
+  contractNo: String
+  sendBooked: Boolean
+  sendReminder: Boolean
+  visits: [JobVisitResponse]
+  invoices: [gen2SearchInvoiceResponse]
+  legacyJobId: Long
+  legacyZoneId: Long
+  legacyLocationId: Long
+  legacyCampaignId: Long
+  legacyOpportunityId: Long
+  legacyProgressId: Long
+  legacyCallStatus: String
+  notes: String
+  assignments: [AssignmentResponse]
+  priority: Boolean
+  isNotified: Boolean
+  priorityLevel: Int
+  dnis: String
+  reviewedAtLocal: String
+  startDateLocal: String
+  endDateLocal: String
+  scheduledForLocal: String
+  createdAtLocal: String
+  followUpDateLocal: String
+  followUpDateSalesLocal: String
+  saleEstDateLocal: String
+}
